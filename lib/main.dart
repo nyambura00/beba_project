@@ -1,15 +1,19 @@
 import 'dart:async';
 
+import 'package:beba_app/repository/authrepo.dart';
 import 'package:beba_app/screens/auth/authgate.dart';
 import 'package:beba_app/screens/userhome.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
+  await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform )
+    .then((value) => Get.put(AuthenticationRepository()));
+    
   runApp(const MyApp());
 }
 
@@ -55,9 +59,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final ButtonStyle style =
-    //     ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
-
     return Scaffold(
       backgroundColor: Colors.red,
       body: Center(
