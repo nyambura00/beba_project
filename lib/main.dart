@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:beba_app/repository/authrepo.dart';
 import 'package:beba_app/screens/auth/authgate.dart';
+import 'package:beba_app/screens/auth/signin.dart';
 import 'package:beba_app/screens/userhome.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/authgate':(context) => const AuthGate(),
+        '/signin':(context) => const SigninScreen(),
         '/userhome': (context) => const HomeScreen(),
       },
     );

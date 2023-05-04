@@ -1,11 +1,9 @@
-import 'dart:ffi';
-
 class User {
 
-  int userId;
-  int phoneNumber;
+  String userId;
+  String phoneNumber;
   String role;
-  Bool verificationStatus;
+  bool verificationStatus;
 
   User({
     required this.userId, 
