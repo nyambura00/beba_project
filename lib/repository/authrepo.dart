@@ -1,9 +1,8 @@
+import 'package:beba_app/screens/auth/otp.dart';
 import 'package:beba_app/screens/splash.dart';
 import 'package:beba_app/screens/userhome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:beba_app/models/user.dart' as user_model;
@@ -24,7 +23,7 @@ class AuthenticationRepository extends GetxController {
   }
 
   _setInitialScreen(User? user) {
-    user == null ? Get.offAll(() => const SplashScreen()) : Get.offAll(() => const HomeScreen());
+    user == null ? Get.off(() => const SplashScreen()) : Get.off(() => const HomeScreen());
   }
 
   final _databaseRef = FirebaseDatabase.instance.ref(); // reference to the Firebase Realtime Database
@@ -42,22 +41,6 @@ class AuthenticationRepository extends GetxController {
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNo,
         verificationCompleted: (credential) async {
-          UserCredential result = await _auth.signInWithCredential(credential);
-          User? user = result.user;
-          
-          if(user != null){
-            await addUserToDatabase(user_model.User(
-              userId: user.uid,
-              phoneNumber: user.phoneNumber!,
-              role: 'traveller',
-              verificationStatus: false,
-            ));
-            Navigator.push(context as BuildContext, MaterialPageRoute(
-              builder: (context) => HomeScreen(user: user,)
-            ));
-          }else{
-            print("Error");
-          }
         },
         codeSent: (verificationId, resendToken) {
           this.verificationId.value = verificationId;
@@ -79,9 +62,9 @@ class AuthenticationRepository extends GetxController {
   }
 
   Future<bool> verifyOTP(String otp) async {
-    var credentials = await _auth
+    UserCredential credentials = await _auth
       .signInWithCredential(PhoneAuthProvider.credential(verificationId: verificationId.value, smsCode: otp));
-    return credentials.user != null ? true : false;
+    return credentials.user != null;
   }
 
   Future<void> logout() async {

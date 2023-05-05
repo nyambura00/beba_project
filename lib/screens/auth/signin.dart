@@ -1,4 +1,4 @@
-import 'package:beba_app/screens/auth/otp_controller.dart';
+import 'package:beba_app/screens/auth/otp.dart';
 import 'package:beba_app/screens/auth/signin_controller.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +34,7 @@ class SigninScreen extends StatelessWidget {
                   onPressed: () async {
                     if(formKey.currentState!.validate()) {
                       SigninController.instance.phoneAuthentication(controller.phoneNo.text.trim());
+                      Get.to(() => const OtpVerificationScreen());
                     }
                   },
                   child: Text('Sign In'.toUpperCase()),

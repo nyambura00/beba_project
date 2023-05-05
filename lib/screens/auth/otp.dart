@@ -1,12 +1,12 @@
 import 'package:beba_app/screens/auth/otp_controller.dart';
 import 'package:beba_app/screens/auth/signin_controller.dart';
+import 'package:beba_app/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
-  final String phoneNumber;
 
-  const OtpVerificationScreen({Key? key, required this.phoneNumber}) : super(key: key);
+  const OtpVerificationScreen({Key? key}) : super(key: key);
 
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
@@ -22,33 +22,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     _otpController = TextEditingController();
   }
 
-  // Future<void> _verifyOtp(BuildContext context) async {
-
-  //   final response = await http.post(
-  //     Uri.parse('https://your-api.com/verify-otp'),
-  //     body: {
-  //       'phone_number': widget.phoneNumber,
-  //       'otp': _otpController.text,
-  //     },
-  //   );
-    
-  //   if (response.statusCode == 200) {
-  //     // OTP verification succeeded
-  //     Navigator.pushNamed(context, '/userhome');
-  //   } else {
-  //     // OTP verification failed
-  //   }
-  // }
-
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: const Text('Phone Number Verification', style: TextStyle(fontSize: 20, fontFamily: 'SpaceMono')),
-      ),
+      appBar: const AppbarWidget(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
