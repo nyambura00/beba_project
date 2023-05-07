@@ -6,24 +6,22 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   final LogoText logoText = const LogoText();
 
-  bool _isProtectedRoute(Route<dynamic> route) {
+  bool _isProtectedRoute(BuildContext context) {
     // list of protected routes
     List<String> protectedRoutes = ['/userhome','/accountsettings', '/profile', '/contact', '/driverification','/driverhome', '/booktrip', '/createtrip'];
     // Check if the current route is in the list of protected routes
-    return protectedRoutes.contains(route.settings.name);
+    return protectedRoutes.contains(ModalRoute.of(context)!.settings.name);
   }
   
   @override
   Widget build(BuildContext context) {
-    // Get the current route
-    final currentRoute = ModalRoute.of(context);
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: logoText,
         backgroundColor: Colors.red[700],
-         actions: _isProtectedRoute(currentRoute!) ? <Widget>[
+         actions: _isProtectedRoute(context) ? <Widget>[
           PopupMenuButton<String>(
             color: Colors.white,
             onSelected: (String choice) {

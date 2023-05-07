@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   desktop_webview_auth
   firebase_core
+  smart_auth
   url_launcher_windows
 )
 

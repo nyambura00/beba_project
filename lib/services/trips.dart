@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:beba_app/models/trip.dart';
+import 'package:beba_app/model/trip.dart';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:beba_app/services/trips.dart';
 import 'package:beba_app/widgets/trip_card.dart';
-import 'package:beba_app/models/trip.dart';
+import 'package:beba_app/model/trip.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TripsList extends StatefulWidget {

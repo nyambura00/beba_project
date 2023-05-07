@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:beba_app/models/trip.dart';
+import 'package:beba_app/model/trip.dart';
 
 class TripCard extends StatefulWidget {
   final Trip trip;

@@ -1,5 +1,5 @@
 import 'package:beba_app/screens/auth/signin.dart';
-import 'package:beba_app/screens/userhome.dart';
+import 'package:beba_app/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
