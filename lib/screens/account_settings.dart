@@ -13,6 +13,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Account Settings'),
+        backgroundColor: Colors.red[700],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

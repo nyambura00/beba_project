@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 
 class HomeScreen extends StatefulWidget {
+
   const HomeScreen({super.key});
 
   @override
@@ -20,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String timePlaceholder = '8:00 AM';
 
   int _currentIndex = 0;
+
+  AppbarWidget appBarWidget = const AppbarWidget();
 
   // late TripService _tripService;
 
@@ -40,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppbarWidget(),
+      appBar: appBarWidget,
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -78,7 +78,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.red[700],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
