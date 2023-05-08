@@ -15,27 +15,12 @@ import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:uuid/uuid.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform );
-
-  // Create TripsService instance and add genesis trip
-  TripsService tripsService = TripsService();
-  await tripsService.addTrip(Trip(
-    id: 0,
-    uuid: const Uuid().v4(), 
-    source: 'NRB',
-    destination: 'ELD', 
-    unitFare: 1000, 
-    vehicleId: 12233455,
-    startTime: DateTime.now().toString(),
-    driverId: 'OXDriver1',  
-    createdAt: '01/05/2023 4:20', 
-  ));
   
   runApp(const MyApp());
 }
@@ -81,9 +66,29 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
 
+  late TripsService _tripsService;
+
   @override
   void initState() {
     super.initState();
+    _tripsService = TripsService();
+
+    // Check if the trips collection is empty
+    _tripsService.getTrips().then((trips) {
+      if (trips.isEmpty) {
+        // Create the Genesis Trip
+        final genesisTrip = Trip(
+          source: 'NRB',
+          destination: 'ELD',
+          unitFare: 1000,
+          vehicleId: 12233455,
+          startTime: DateTime.now().toString(),
+          driverId: 'OXDriver1',
+        );
+        _tripsService.addTrip(genesisTrip);
+      }
+    });
+
     Timer(const Duration(seconds: 3), () {
       Navigator.pushNamed(
         context,
