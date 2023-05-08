@@ -47,7 +47,7 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                   TextFormField(
                     decoration: const InputDecoration(
                       labelText: 'Full Name',
-                      hintText: 'ID name',
+                      hintText: 'As per ID',
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
@@ -66,6 +66,7 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                       _fullName = value!;
                     },
                   ),
+                  // TODO: Attach Driver image
                   const SizedBox( height: 10.0, ),
                   TextFormField(
                     decoration: InputDecoration(
@@ -88,6 +89,26 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                   const SizedBox( height: 10.0, ),
                   TextFormField(
                     decoration: InputDecoration(
+                      labelText: 'NTSA Number',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your NTSA number';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _licenseNumber = value!;
+                    },
+                  ),
+                  // TODO: Attach NTSA image
+                  const SizedBox( height: 10.0, ),
+                  TextFormField(
+                    decoration: InputDecoration(
                       labelText: 'ID Number',
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey, width: 1.0),
@@ -104,6 +125,7 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                       _idNumber = value!;
                     },
                   ),
+                  // TODO: Attach ID image
                   const SizedBox( height: 10.0, ),
                   TextFormField(
                     decoration: InputDecoration(
@@ -187,6 +209,6 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
     // to check if the driver's details are valid
 
     // If the verification succeeds, navigate to the driver dashboard
-    Navigator.pushNamed(context, '/driver-dashboard');
+    Navigator.pushNamed(context, '/driverdashboard');
   }
 }

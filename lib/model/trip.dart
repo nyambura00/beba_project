@@ -37,6 +37,22 @@ class Trip {
     };
   }
 
+  // Convert a Map into a Trip. The keys must correspond to the names of the
+  // columns in the database.
+  static Trip fromMap(Map<String, dynamic> map) {
+    return Trip(
+      id: map['id'],
+      uuid: map['uuid'],
+      source: map['source'],
+      destination: map['destination'],
+      unitFare: map['unitFare'],
+      vehicleId: map['vehicleId'],
+      startTime: map['startTime'],
+      driverId: map['driverId'],
+      createdAt: map['createdAt'],
+    );
+  }
+
   // Implement toString to make it easier to see information about
   // each trip when using the print statement.
   @override

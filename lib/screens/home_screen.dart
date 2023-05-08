@@ -1,9 +1,10 @@
-// import 'package:beba_app/screens/trips.dart';
-// import 'package:beba_app/services/trips_db.dart';
+import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/screens/trips/trips_list.dart';
+import 'package:beba_app/services/trips.dart';
+
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:beba_app/widgets/time_selection.dart';
-// import 'package:beba_app/widgets/trip_card.dart';
 import 'package:beba_app/widgets/routes_selection.dart';
 import 'package:flutter/material.dart';
 
@@ -24,20 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppbarWidget appBarWidget = const AppbarWidget();
 
-  // late TripService _tripService;
-
-  // Future<void> _initializeTripService() async {
-
-  //   final database = await openDatabase(inMemoryDatabasePath);
-  //   _tripService = TripService(database);
-
-  //   await _tripService.initialize();
-  // }
+  late TripsService _tripsService;
+  List<Trip> _trips = [];
 
   @override
   void initState() {
     super.initState();
-    // _initializeTripService();
+    _tripsService = TripsService();
+    _initTrips();
+  }
+
+  void _initTrips() async {
+    final trips = await _tripsService.getTrips();
+    setState(() {
+      _trips = trips;
+    });
   }
 
   @override
@@ -141,18 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle( fontFamily: 'SpaceMono', fontSize: 20.0, color: Colors.red),
               ),
             ),
-            // SingleChildScrollView(
-            //   child: FutureBuilder<void>(
-            //     future: _initializeTripService(),
-            //     builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-            //       if (snapshot.connectionState == ConnectionState.done) {
-            //         return TripsList();
-            //       } else {
-            //         return const CircularProgressIndicator();
-            //       }
-            //     },
-            //   ),
-            // ),
+            TripList(trips: _trips),
             const Padding(
               padding: EdgeInsets.all(10.0),
               child: Text('See more...',

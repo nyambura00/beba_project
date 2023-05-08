@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:beba_app/model/trip.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/screens/account_settings.dart';
 import 'package:beba_app/screens/auth/authgate.dart';
@@ -9,17 +10,33 @@ import 'package:beba_app/screens/contact_us.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/user_profile.dart';
 import 'package:beba_app/screens/welcome_screen.dart';
+import 'package:beba_app/services/trips.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:uuid/uuid.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform );
-    // .then((value) => Get.put(AuthenticationRepository()));    
+
+  // Create TripsService instance and add genesis trip
+  TripsService tripsService = TripsService();
+  await tripsService.addTrip(Trip(
+    id: 0,
+    uuid: const Uuid().v4(), 
+    source: 'NRB',
+    destination: 'ELD', 
+    unitFare: 1000, 
+    vehicleId: 12233455,
+    startTime: DateTime.now().toString(),
+    driverId: 'OXDriver1',  
+    createdAt: '01/05/2023 4:20', 
+  ));
+  
   runApp(const MyApp());
 }
 
