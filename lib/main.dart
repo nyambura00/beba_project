@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Trip? trip;
+    Trip tripInstance;
 
     return MultiProvider(
       providers: [
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           '/userhome': (context) => const HomeScreen(),
           '/accountsettings':(context) => const AccountSettingsScreen(),
           '/userprofile':(context) => const UserProfile(),
-          '/booktrip': (context) => BookTripScreen (trip: trip,),
+          '/booktrip': (context) => BookTripScreen(trip: ModalRoute.of(context)?.settings.arguments as Trip,),
           '/contact':(context) => const ContactUsScreen(),
           '/notifications':(context) => const NotificationsScreen(),
           '/logout':(context) => const LogoutScreen(),

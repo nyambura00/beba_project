@@ -71,6 +71,7 @@ class _TripCardState extends State<TripCard> {
                     Navigator.pushNamed(
                       context,
                       '/booktrip',
+                      arguments: widget.trip,
                     );
                   },
                   child: const Text('Book Trip'),

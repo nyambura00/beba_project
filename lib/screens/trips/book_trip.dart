@@ -1,108 +1,80 @@
-import 'package:beba_app/model/trip.dart';
 import 'package:beba_app/widgets/app_bar.dart';
-import 'package:beba_app/widgets/bottom_navbar.dart';
-import 'package:beba_app/widgets/custom_button.dart';
+import 'package:beba_app/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:beba_app/model/trip.dart';
 
 class BookTripScreen extends StatefulWidget {
-  final Trip? trip;
+  final Trip trip;
 
   const BookTripScreen({Key? key, required this.trip}) : super(key: key);
 
   @override
-  _BookTripScreenState createState() => _BookTripScreenState();
+  State<BookTripScreen> createState() => _BookTripScreenState();
 }
 
 class _BookTripScreenState extends State<BookTripScreen> {
-  int _currentIndex = 0;
+  bool _paymentConfirmed = false;
+
+  void _confirmPayment() {
+    setState(() {
+      _paymentConfirmed = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppbarWidget(),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: [
-                        const Text(
-                          'Book Trip',
-                          style: TextStyle(
-                            fontSize: 30.0,
-                            fontFamily: 'SpaceMono',
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        const Text(
-                          'Trip Details',
-                          style: TextStyle(
-                            fontFamily: 'SpaceMono',
-                            color: Colors.grey,
-                            fontSize: 17.0,
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Text(
-                          'Source: ${widget.trip!.source}',
-                          style: const TextStyle(
-                            fontFamily: 'SpaceMono',
-                            fontSize: 20.0,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        Text(
-                          'Destination: ${widget.trip!.destination}',
-                          style: const TextStyle(
-                            fontFamily: 'SpaceMono',
-                            fontSize: 20.0,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        Text(
-                          'Unit Fare: KES ${widget.trip!.unitFare}',
-                          style: const TextStyle(
-                            fontFamily: 'SpaceMono',
-                            fontSize: 20.0,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        Text(
-                          'Start Time: ${widget.trip!.startTime}',
-                          style: const TextStyle(
-                            fontFamily: 'SpaceMono',
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: CustomButton(
-                  text: "Confirm",
-                  onPressed: () {
-                    // MPESA API endpoint
-                  },
-                ),
-              ),
-            ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'Book a Trip',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
           ),
-        ),
+          TripCard(trip: widget.trip),
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'Payment',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Total Amount: ${widget.trip.unitFare}',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Please confirm payment to book this trip:',
+                  style: TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: _paymentConfirmed ? null : _confirmPayment,
+                  child: Text(
+                    _paymentConfirmed ? 'Payment Confirmed' : 'Confirm Payment',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }
