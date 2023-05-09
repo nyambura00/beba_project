@@ -16,6 +16,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notifications'),
+        // foregroundColor: Colors.red[700],
       ),
       body: ListView.builder(
         itemCount: _notifications.length,

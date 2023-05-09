@@ -66,7 +66,17 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                       _fullName = value!;
                     },
                   ),
-                  // TODO: Attach Driver image
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Get an image from the user's device
+                      final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        // Display the selected image in an Image widget
+                        Image.file(File(pickedFile.path));
+                      }
+                    },
+                    child: const Text('Attach Driver Image'),
+                  ),
                   const SizedBox( height: 10.0, ),
                   TextFormField(
                     decoration: InputDecoration(
@@ -105,7 +115,17 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                       _licenseNumber = value!;
                     },
                   ),
-                  // TODO: Attach NTSA image
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Get an image from the user's device
+                      final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        // Display the selected image in an Image widget
+                        Image.file(File(pickedFile.path));
+                      }
+                    },
+                    child: const Text('Attach NTSA'),
+                  ),
                   const SizedBox( height: 10.0, ),
                   TextFormField(
                     decoration: InputDecoration(
@@ -125,7 +145,17 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                       _idNumber = value!;
                     },
                   ),
-                  // TODO: Attach ID image
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Get an image from the user's device
+                      final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        // Display the selected image in an Image widget
+                        Image.file(File(pickedFile.path));
+                      }
+                    },
+                    child: const Text('Attach ID'),
+                  ),
                   const SizedBox( height: 10.0, ),
                   TextFormField(
                     decoration: InputDecoration(

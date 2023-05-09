@@ -33,7 +33,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                 break;
               case 'Profile':
                 // Navigate to the profile page
-                Navigator.pushNamed(context, '/profile');
+                Navigator.pushNamed(context, '/userprofile');
                 break;
               case 'Contact Us':
                 // Navigate to the profile page

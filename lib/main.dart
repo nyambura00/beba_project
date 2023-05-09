@@ -7,7 +7,11 @@ import 'package:beba_app/screens/auth/authgate.dart';
 import 'package:beba_app/screens/auth/logout.dart';
 import 'package:beba_app/screens/auth/signin.dart';
 import 'package:beba_app/screens/contact_us.dart';
+import 'package:beba_app/screens/driver_home.dart';
+import 'package:beba_app/screens/driver_splash.dart';
 import 'package:beba_app/screens/home_screen.dart';
+import 'package:beba_app/screens/notifications.dart';
+import 'package:beba_app/screens/trips/book_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
 import 'package:beba_app/screens/welcome_screen.dart';
 import 'package:beba_app/services/trips.dart';
@@ -31,6 +35,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Trip? trip;
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
@@ -49,9 +55,13 @@ class MyApp extends StatelessWidget {
           '/signin':(context) => const SigninScreen(),
           '/userhome': (context) => const HomeScreen(),
           '/accountsettings':(context) => const AccountSettingsScreen(),
-          '/profile':(context) => const UserProfile(),
+          '/userprofile':(context) => const UserProfile(),
+          '/booktrip': (context) => BookTripScreen (trip: trip,),
           '/contact':(context) => const ContactUsScreen(),
+          '/notifications':(context) => const NotificationsScreen(),
           '/logout':(context) => const LogoutScreen(),
+          '/driversplash':(context) => const DriverSplashScreen(),
+          '/driverhome':(context) => const DriverHomeScreen(),
         },
       ),
     );

@@ -116,21 +116,21 @@ class _OtpScreenState extends State<OtpScreen> {
                             ),
                           ),
                           const SizedBox(height: 30),
-                          const Text(
-                            "Didn't receive any code?",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white70,
-                            ),
-                          ),
-                          const SizedBox(height: 15),
-                          const Text(
-                            "Resend New Code",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            child: CustomButton(
+                              text: "Resend OTP",
+                              onPressed: () {
+                                if (otpCode != null) {
+                                  verifyOtp(context, otpCode!);
+                                  // redirect to /userhome screen
+                                  Navigator.pushNamed(context, '/userhome');
+                                } else {
+                                  showSnackBar(context, "Contact Beba?");
+                                  Navigator.pushNamed(context, '/contact');
+                                }
+                              },
                             ),
                           ),
                         ],
