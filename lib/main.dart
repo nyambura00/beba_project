@@ -11,6 +11,7 @@ import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/driver_splash.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/notifications.dart';
+import 'package:beba_app/screens/trips/bid_trip.dart';
 import 'package:beba_app/screens/trips/book_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
 import 'package:beba_app/screens/welcome_screen.dart';
@@ -35,7 +36,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Trip tripInstance;
 
     return MultiProvider(
       providers: [
@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
           '/logout':(context) => const LogoutScreen(),
           '/driversplash':(context) => const DriverSplashScreen(),
           '/driverhome':(context) => const DriverHomeScreen(),
+          '/bidtrip':(context) => const BidTripScreen(),
         },
       ),
     );

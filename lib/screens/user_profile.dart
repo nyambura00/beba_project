@@ -19,14 +19,14 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   File? image;
   final nameController = TextEditingController();
-  final emailController = TextEditingController();
+  final phoneNumberController = TextEditingController();
   final bioController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     nameController.dispose();
-    emailController.dispose();
+    phoneNumberController.dispose();
     bioController.dispose();
   }
 
@@ -83,21 +83,21 @@ class _UserProfileState extends State<UserProfile> {
                             child: Column(
                               children: [
                                 textField(
-                                  hintText: "John Smith",
+                                  hintText: "Jane Doe",
                                   icon: Icons.account_circle,
                                   inputType: TextInputType.name,
                                   maxLines: 1,
                                   controller: nameController,
                                 ),
                                 textField(
-                                  hintText: "abc@example.com",
-                                  icon: Icons.email,
-                                  inputType: TextInputType.emailAddress,
+                                  hintText: "+25471234567",
+                                  icon: Icons.phone,
+                                  inputType: TextInputType.phone,
                                   maxLines: 1,
-                                  controller: emailController,
+                                  controller: phoneNumberController,
                                 ),
                                 textField(
-                                  hintText: "Enter your bio here...",
+                                  hintText: "Enter bio here...",
                                   icon: Icons.edit,
                                   inputType: TextInputType.name,
                                   maxLines: 2,
@@ -111,7 +111,7 @@ class _UserProfileState extends State<UserProfile> {
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.90,
                             child: CustomButton(
-                              text: "Continue",
+                              text: "Update Profile",
                               onPressed: () => storeData(),
                             ),
                           )
@@ -180,10 +180,9 @@ class _UserProfileState extends State<UserProfile> {
       bio: bioController.text.trim(),
       profilePic: "",
       createdAt: "",
-      phoneNumber: "",
       uid: "",
       name: nameController.text.trim(),
-      email: emailController.text.trim(),
+      phoneNumber: phoneNumberController.text.trim(),
     );
     if (image != null) {
       ap.saveUserDataToFirebase(

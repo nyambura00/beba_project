@@ -67,6 +67,9 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                     },
                   ),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    ),
                     onPressed: () async {
                       // Get an image from the user's device
                       final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -116,6 +119,9 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                     },
                   ),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    ),
                     onPressed: () async {
                       // Get an image from the user's device
                       final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -146,6 +152,9 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                     },
                   ),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    ),
                     onPressed: () async {
                       // Get an image from the user's device
                       final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -188,6 +197,9 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                     ],
                   ),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    ),
                     onPressed: () async {
                       // Get an image from the user's device
                       final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);

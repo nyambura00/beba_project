@@ -144,10 +144,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             TripList(trips: _trips),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text('See more...',
-                style: TextStyle( fontFamily: 'SpaceMono', fontSize: 17.0, color: Colors.lightBlue),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TripList(trips: [],)),
+                  );
+                },
+                child: const Text(
+                  'See more...',
+                  style: TextStyle(
+                    fontFamily: 'SpaceMono',
+                    fontSize: 17.0,
+                    color: Colors.lightBlue,
+                  ),
+                ),
               ),
             ),
           ],),

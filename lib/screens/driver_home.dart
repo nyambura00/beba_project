@@ -94,7 +94,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
               ),
             ),
             const SizedBox( height: 20.0,),
-            const Text('Trips History', 
+            const Text('Available Trips', 
               style: TextStyle( fontFamily: 'SpaceMono', fontSize: 20.0, fontWeight: FontWeight.bold, ),
             ),
             TripList(trips: _trips),
