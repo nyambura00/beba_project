@@ -14,7 +14,26 @@ class BidTripScreen extends StatefulWidget {
 class _BidTripScreenState extends State<BidTripScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  var routePlaceholder = 'NRB-ELD';
+  //a variable to hold the driver's route value
+  String driverRoute = '';
+
+  @override
+  void initState() {
+    super.initState();
+    // Retrieve the driver's route value from the database
+    getDriverRoute().then((value) {
+      setState(() {
+        driverRoute = value;
+      });
+    });
+  }
+
+  // TODO
+  Future<String> getDriverRoute() async {
+    // Replace this with your own Firebase query to retrieve the driver's route value
+    // Instance of a hard-coded value
+    return 'NRB-ELD';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +57,25 @@ class _BidTripScreenState extends State<BidTripScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const Text('- Check for a slot from Beba :)',
+                    style: TextStyle(
+                      fontFamily: 'SpaceMono',
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
                   const SizedBox( height: 20.0,),
                   Row(
                     children: [
                       const Text('Route Name: ',
                         style: TextStyle( fontFamily: 'SpaceMono'),
                       ),
-                      RoutesSelection(options: const [], onSelectOption: (String placeholder) { routePlaceholder = placeholder; } ),
+                      RoutesSelection(
+                        options: const [], 
+                        onSelectOption: (String value) {
+                          driverRoute = value;
+                        },
+                      ),
                       const SizedBox( width: 15.0,),
                       GestureDetector(
                         onTap: () => { Navigator.pushNamed(context, '/driverification') },
@@ -65,13 +96,13 @@ class _BidTripScreenState extends State<BidTripScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () => {
-                      Navigator.pushNamed(context, '/trips'),
+                      Navigator.pushNamed(context, '/tripconfirmation'),
                     }, 
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.red,
                     ),
-                    child: const Text('search',
+                    child: const Text('Submit',
                       style: TextStyle( fontSize: 15.0),
                     ),
                   ),

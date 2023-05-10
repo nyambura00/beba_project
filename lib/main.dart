@@ -11,6 +11,7 @@ import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/driver_splash.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/notifications.dart';
+import 'package:beba_app/screens/trips/agent_trips_confirm.dart';
 import 'package:beba_app/screens/trips/bid_trip.dart';
 import 'package:beba_app/screens/trips/book_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
           '/driversplash':(context) => const DriverSplashScreen(),
           '/driverhome':(context) => const DriverHomeScreen(),
           '/bidtrip':(context) => const BidTripScreen(),
+          '/tripconfirmation':(context) => const TripConfirmation(),
         },
       ),
     );

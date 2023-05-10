@@ -14,6 +14,11 @@ class _RoutesSelectionState extends State<RoutesSelection> {
   String _selectedOption = 'NRB-ELD';
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: _selectedOption,
@@ -29,6 +34,7 @@ class _RoutesSelectionState extends State<RoutesSelection> {
           'NRB-MSA',
           'NRB-MERU',
           'NRB-NYERI',
+          'NRB-EMBU',
       ].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
