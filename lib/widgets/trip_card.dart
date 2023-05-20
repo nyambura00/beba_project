@@ -3,18 +3,15 @@ import 'package:beba_app/model/trip.dart';
 
 class TripCard extends StatefulWidget {
   final Trip trip;
-  final Function(bool)
-      onToggleApproval; // New attribute to handle approval toggle
 
-  const TripCard(
-      {super.key, required this.trip, required this.onToggleApproval});
+  const TripCard({super.key, required this.trip});
 
   @override
   State<TripCard> createState() => _TripCardState();
 }
 
 class _TripCardState extends State<TripCard> {
-  bool isApproved = false; // Track the approval state
+  bool isApproved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -75,15 +72,11 @@ class _TripCardState extends State<TripCard> {
                     foregroundColor: Colors.white,
                   ),
                   onPressed: () {
-                    setState(() {
-                      isApproved = !isApproved; // Toggle the approval state
-                    });
-                    widget.onToggleApproval(
-                        isApproved); // Invoke the provided callback
+                    Navigator.pushNamed(context, '/tripunit');
                   },
                   child: Text(isApproved
-                      ? 'Approved'
-                      : 'Pending'), // Show appropriate text based on approval state
+                      ? 'Book Trip'
+                      : 'Approve Trip'), // Show appropriate text based on approval state
                 ),
               ],
             ),

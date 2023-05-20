@@ -11,11 +11,12 @@ import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/driver_splash.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/notifications.dart';
+import 'package:beba_app/screens/splash.dart';
 import 'package:beba_app/screens/trips/agent_trips_confirm.dart';
 import 'package:beba_app/screens/trips/bid_trip.dart';
 import 'package:beba_app/screens/trips/book_trip.dart';
+import 'package:beba_app/screens/trips/unit_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
-import 'package:beba_app/screens/welcome_screen.dart';
 import 'package:beba_app/services/trips.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,8 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform );
-  
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MyApp());
 }
 
@@ -37,7 +38,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
@@ -51,20 +51,23 @@ class MyApp extends StatelessWidget {
         home: const LandingPage(),
         initialRoute: '/',
         routes: {
-          '/authgate':(context) => const AuthGate(),
-          '/splash':(context) => const WelcomeScreen(),
-          '/signin':(context) => const SigninScreen(),
+          '/authgate': (context) => const AuthGate(),
+          '/splash': (context) => const WelcomeScreen(),
+          '/signin': (context) => const SigninScreen(),
           '/userhome': (context) => const HomeScreen(),
-          '/accountsettings':(context) => const AccountSettingsScreen(),
-          '/userprofile':(context) => const UserProfile(),
-          '/booktrip': (context) => BookTripScreen(trip: ModalRoute.of(context)?.settings.arguments as Trip,),
-          '/contact':(context) => const ContactUsScreen(),
-          '/notifications':(context) => const NotificationsScreen(),
-          '/logout':(context) => const LogoutScreen(),
-          '/driversplash':(context) => const DriverSplashScreen(),
-          '/driverhome':(context) => const DriverHomeScreen(),
-          '/bidtrip':(context) => const BidTripScreen(),
-          '/tripconfirmation':(context) => const TripConfirmation(),
+          '/accountsettings': (context) => const AccountSettingsScreen(),
+          '/userprofile': (context) => const UserProfile(),
+          '/booktrip': (context) => BookTripScreen(
+                trip: ModalRoute.of(context)?.settings.arguments as Trip,
+              ),
+          '/contact': (context) => const ContactUsScreen(),
+          '/notifications': (context) => const NotificationsScreen(),
+          '/logout': (context) => const LogoutScreen(),
+          '/driversplash': (context) => const DriverSplashScreen(),
+          '/driverhome': (context) => const DriverHomeScreen(),
+          '/bidtrip': (context) => const BidTripScreen(),
+          '/tripconfirmation': (context) => const TripConfirmation(),
+          '/tripunit': (context) => const UnitTrip(),
         },
       ),
     );
@@ -78,7 +81,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-
   late TripsService _tripsService;
 
   @override
@@ -119,7 +121,8 @@ class _LandingPageState extends State<LandingPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             LogoText(),
-            Text('a product of Scheduled Travels EA',
+            Text(
+              'a product of Scheduled Travels EA',
               style: TextStyle(
                 fontWeight: FontWeight.normal,
                 fontSize: 18.0,

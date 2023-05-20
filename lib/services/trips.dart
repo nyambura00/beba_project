@@ -10,8 +10,13 @@ class TripsService {
   }
 
   Future<List<Trip>> getTrips() async {
-    final tripDocs = await _tripsRef.orderBy('startTime').get();
-    return tripDocs.docs.map((doc) => Trip.fromMap(doc.data() as Map<String, dynamic>, doc.id)).toList();
+    final tripDocs = await _tripsRef.where('isApproved', whereIn: [true, false])
+        // .orderBy('startTime')
+        .get();
+
+    return tripDocs.docs
+        .map((doc) => Trip.fromMap(doc.data() as Map<String, dynamic>, doc.id))
+        .toList();
   }
 
   Future<DocumentReference> addTrip(Trip trip) async {
