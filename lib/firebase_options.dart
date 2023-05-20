@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '655688320588',
     projectId: 'beba-73d47',
     authDomain: 'beba-73d47.firebaseapp.com',
+    databaseURL: 'https://beba-73d47-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'beba-73d47.appspot.com',
     measurementId: 'G-G6LF93LZHR',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:655688320588:android:30637e19a83461512ed6e9',
     messagingSenderId: '655688320588',
     projectId: 'beba-73d47',
+    databaseURL: 'https://beba-73d47-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'beba-73d47.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:655688320588:ios:a814e16a9ee616972ed6e9',
     messagingSenderId: '655688320588',
     projectId: 'beba-73d47',
+    databaseURL: 'https://beba-73d47-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'beba-73d47.appspot.com',
     androidClientId: '655688320588-40pcqldbfnmepf0uegduu4vikpjr01j8.apps.googleusercontent.com',
     iosClientId: '655688320588-gtg8ohn8sc7v5eim9cvbgtjudjgc1k4k.apps.googleusercontent.com',
@@ -77,6 +80,7 @@ class DefaultFirebaseOptions {
     appId: '1:655688320588:ios:a814e16a9ee616972ed6e9',
     messagingSenderId: '655688320588',
     projectId: 'beba-73d47',
+    databaseURL: 'https://beba-73d47-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'beba-73d47.appspot.com',
     androidClientId: '655688320588-40pcqldbfnmepf0uegduu4vikpjr01j8.apps.googleusercontent.com',
     iosClientId: '655688320588-gtg8ohn8sc7v5eim9cvbgtjudjgc1k4k.apps.googleusercontent.com',

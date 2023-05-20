@@ -86,8 +86,8 @@ class _BidTripScreenState extends State<BidTripScreen> {
                     ],
                   ),
                   const SizedBox( height: 20.0,),
-                  Row(
-                    children: const [
+                  const Row(
+                    children: [
                       Text('Pick time: ',
                         style: TextStyle( fontFamily: 'SpaceMono'),
                       ),

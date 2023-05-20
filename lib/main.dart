@@ -114,10 +114,10 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red[700],
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             LogoText(),
             Text('a product of Scheduled Travels EA',
               style: TextStyle(

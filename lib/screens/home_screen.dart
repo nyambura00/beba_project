@@ -21,8 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String routePlaceholder = 'NRB-ELD';
   String timePlaceholder = '8:00 AM';
 
-  int _currentIndex = 0;
-
   AppbarWidget appBarWidget = const AppbarWidget();
 
   late TripsService _tripsService;
@@ -96,9 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox( height: 20.0,),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text(
                         'Pick Time:  ',
                         style: TextStyle(fontFamily: 'SpaceMono', fontSize: 20.0, fontWeight: FontWeight.normal,),

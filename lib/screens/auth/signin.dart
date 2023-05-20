@@ -2,7 +2,7 @@ import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/provider/auth_provider.dart';
-import 'package:beba_app/widgets/background_image.dart';
+// import 'package:beba_app/widgets/background_image.dart';
 import 'package:beba_app/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
@@ -10,10 +10,10 @@ class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
 
   @override
-  State<SigninScreen> createState() =>  SigninScreenState();
+  State<SigninScreen> createState() => SigninScreenState();
 }
 
-class  SigninScreenState extends State<SigninScreen> {
+class SigninScreenState extends State<SigninScreen> {
   final TextEditingController phoneController = TextEditingController();
 
   Country selectedCountry = Country(
@@ -38,7 +38,7 @@ class  SigninScreenState extends State<SigninScreen> {
     );
     return Stack(
       children: [
-        const BackgroundImage(),
+        // const BackgroundImage(),
         Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
@@ -52,16 +52,16 @@ class  SigninScreenState extends State<SigninScreen> {
                     const LogoText(),
                     const SizedBox(height: 70),
                     const Text(
-                      "Register",
+                      "Sign In",
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      "Add phone number and get a verification code",
+                      "Phone Number Authentication",
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white,
@@ -84,7 +84,7 @@ class  SigninScreenState extends State<SigninScreen> {
                         });
                       },
                       decoration: InputDecoration(
-                        hintText: "Enter phone number",
+                        hintText: "0712345678",
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 16,

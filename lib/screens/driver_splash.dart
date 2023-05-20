@@ -11,12 +11,12 @@ class DriverSplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppbarWidget(),
+    return const Scaffold(
+      appBar: AppbarWidget(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             SizedBox( height: 20.0, ),
             DriverHeroContainer(),
             SizedBox( height: 30.0, ),
