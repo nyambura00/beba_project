@@ -9,18 +9,20 @@ class Trip {
   final String startTime;
   final String driverId;
   late String createdAt;
+  bool isApproved;
 
   Trip({
     this.id,
-    required this.source, 
+    required this.source,
     required this.destination,
     required this.unitFare,
     required this.vehicleId,
     required this.startTime,
     required this.driverId,
+    this.isApproved = false,
   }) {
-    createdAt = DateTime.now().toString();  // generate createdAt attribute
-    id = const Uuid().v4();  
+    createdAt = DateTime.now().toString();
+    id = const Uuid().v4();
   }
 
   Map<String, dynamic> toMap() {
@@ -33,6 +35,7 @@ class Trip {
       'startTime': startTime,
       'driverId': driverId,
       'createdAt': createdAt,
+      'isApproved': isApproved,
     };
   }
 
@@ -45,11 +48,12 @@ class Trip {
       vehicleId: map['vehicleId'],
       startTime: map['startTime'],
       driverId: map['driverId'],
+      isApproved: map['isApproved'],
     );
   }
 
   @override
   String toString() {
-    return 'Trip{id: $id, source: $source, destination: $destination, unitFare: $unitFare, vehicleId: $vehicleId, startTime: $startTime, driverId: $driverId, createdAt: $createdAt}';
+    return 'Trip{id: $id, source: $source, destination: $destination, unitFare: $unitFare, vehicleId: $vehicleId, startTime: $startTime, driverId: $driverId, createdAt: $createdAt, isApproved: $isApproved}';
   }
 }

@@ -3,14 +3,19 @@ import 'package:beba_app/model/trip.dart';
 
 class TripCard extends StatefulWidget {
   final Trip trip;
+  final Function(bool)
+      onToggleApproval; // New attribute to handle approval toggle
 
-  const TripCard({super.key, required this.trip});
+  const TripCard(
+      {super.key, required this.trip, required this.onToggleApproval});
 
   @override
   State<TripCard> createState() => _TripCardState();
 }
 
 class _TripCardState extends State<TripCard> {
+  bool isApproved = false; // Track the approval state
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,14 +31,16 @@ class _TripCardState extends State<TripCard> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Source: ${widget.trip.source}',
-              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style:
+                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Destination: ${widget.trip.destination}',
-              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style:
+                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -64,17 +71,19 @@ class _TripCardState extends State<TripCard> {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black, 
+                    backgroundColor: isApproved ? Colors.green : Colors.black,
                     foregroundColor: Colors.white,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/booktrip',
-                      arguments: widget.trip,
-                    );
+                    setState(() {
+                      isApproved = !isApproved; // Toggle the approval state
+                    });
+                    widget.onToggleApproval(
+                        isApproved); // Invoke the provided callback
                   },
-                  child: const Text('Book Trip'),
+                  child: Text(isApproved
+                      ? 'Approved'
+                      : 'Pending'), // Show appropriate text based on approval state
                 ),
               ],
             ),
