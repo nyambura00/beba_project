@@ -1,3 +1,4 @@
+import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 class AccountSettingsScreen extends StatefulWidget {
@@ -75,6 +76,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }
