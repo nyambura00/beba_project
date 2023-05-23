@@ -1,4 +1,3 @@
-import 'package:beba_app/screens/driver_verification.dart';
 import 'package:flutter/material.dart';
 
 class DriverHeroContainer extends StatefulWidget {
@@ -12,11 +11,11 @@ class _DriverHeroContainerState extends State<DriverHeroContainer> {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'driverVerification',
+      tag: 'driverSplash',
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.red[700],
+          color: Colors.black,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -41,14 +40,15 @@ class _DriverHeroContainerState extends State<DriverHeroContainer> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const DriverVerificationForm(),
-                  ),
+                  '/driverification',
                 );
               },
-              child: const Text('Get verified', style: TextStyle( fontSize: 20.0),) ,
+              child: const Text(
+                'Get verified',
+                style: TextStyle(fontSize: 20.0),
+              ),
             ),
           ],
         ),

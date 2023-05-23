@@ -35,9 +35,16 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.switch_account),
-              title: const Text('Become a Driver'),
+              title: const Text('Become a Beba Driver'),
               onTap: () {
                 Navigator.pushNamed(context, '/driversplash');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.switch_account),
+              title: const Text('Become a Beba Agent'),
+              onTap: () {
+                Navigator.pushNamed(context, '/agentsplash');
               },
             ),
             const Divider(),

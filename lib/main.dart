@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:beba_app/model/trip.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/screens/account_settings.dart';
+import 'package:beba_app/screens/agent_splash.dart';
 import 'package:beba_app/screens/auth/authgate.dart';
 import 'package:beba_app/screens/auth/logout.dart';
 import 'package:beba_app/screens/auth/signin.dart';
 import 'package:beba_app/screens/contact_us.dart';
 import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/driver_splash.dart';
+import 'package:beba_app/screens/driver_verification.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/notifications.dart';
 import 'package:beba_app/screens/splash.dart';
@@ -64,10 +66,12 @@ class MyApp extends StatelessWidget {
           '/notifications': (context) => const NotificationsScreen(),
           '/logout': (context) => const LogoutScreen(),
           '/driversplash': (context) => const DriverSplashScreen(),
+          '/driverification': (context) => const DriverVerificationForm(),
           '/driverhome': (context) => const DriverHomeScreen(),
           '/bidtrip': (context) => const BidTripScreen(),
           '/tripconfirmation': (context) => const TripConfirmation(),
           '/tripunit': (context) => const UnitTrip(),
+          '/agentsplash': (context) => const AgentSplash(),
         },
       ),
     );

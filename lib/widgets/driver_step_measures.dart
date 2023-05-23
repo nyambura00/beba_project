@@ -9,7 +9,7 @@ class DriverStepMeasures extends StatefulWidget {
 
 class _DriverStepMeasuresState extends State<DriverStepMeasures> {
   int _index = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     return Stepper(
@@ -41,11 +41,13 @@ class _DriverStepMeasuresState extends State<DriverStepMeasures> {
           title: const Text('Sign in to Account'),
           content: Container(
               alignment: Alignment.centerLeft,
-              child: const Text('Sign in with Phone Number to access Driver Verification form.')),
+              child: const Text(
+                  'Sign in with Phone Number to access Driver Verification form.')),
         ),
         const Step(
           title: Text('Complete Driver Verification form'),
-          content: Text('Fill Basic Details, Read and accept Terms and Conditions of working with Beba.'),
+          content: Text(
+              'Fill Basic Details, Read and accept Terms and Conditions of working with Beba.'),
         ),
       ],
     );
