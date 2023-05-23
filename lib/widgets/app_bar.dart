@@ -16,7 +16,8 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
       '/driverification',
       '/driverhome',
       '/booktrip',
-      '/createtrip'
+      '/createtrip',
+      '/tripconfirmation'
     ];
     // Check if the current route is in the list of protected routes
     return protectedRoutes.contains(route.settings.name);

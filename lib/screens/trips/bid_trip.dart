@@ -125,8 +125,8 @@ class _BidTripScreenState extends State<BidTripScreen> {
                     onPressed: () => {
                       //snackbar notification
                       _showNotification(
-                          'Your bid has been made. Please await approval.'),
-                      Navigator.pushNamed(context, '/driverhome'),
+                          'Bid submitted successfully. Please await approval.'),
+                      Navigator.pushNamed(context, '/tripconfirmation'),
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,

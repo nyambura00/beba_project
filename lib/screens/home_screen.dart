@@ -8,9 +8,7 @@ import 'package:beba_app/widgets/time_selection.dart';
 import 'package:beba_app/widgets/routes_selection.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatefulWidget {
-
   const HomeScreen({super.key});
 
   @override
@@ -51,12 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 1.0,
               color: Colors.grey[400],
             ),
-            const SizedBox( height: 10.0,),
+            const SizedBox(
+              height: 10.0,
+            ),
             const SizedBox(
               height: 35.0,
               child: Text(
                 'Twende wapi?',
-                style: TextStyle(fontFamily: 'SpaceMono', fontSize: 30.0, fontWeight: FontWeight.normal),
+                style: TextStyle(
+                    fontFamily: 'SpaceMono',
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.normal),
               ),
             ),
             Container(
@@ -67,11 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 5,
-                    spreadRadius: 1,
-                    offset: Offset(4, 4)
-                  ),
+                      color: Colors.white,
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                      offset: Offset(4, 4)),
                 ],
               ),
               width: MediaQuery.of(context).size.width * 0.8,
@@ -79,37 +81,50 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget> [
+                children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget> [
+                    children: <Widget>[
                       const Text(
                         'Select Route: ',
-                        style: TextStyle(fontFamily: 'SpaceMono', fontSize: 20.0, fontWeight: FontWeight.normal),
+                        style: TextStyle(
+                            fontFamily: 'SpaceMono',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.normal),
                       ),
                       RoutesSelection(
-                        onSelectOption: (String placeholder) { routePlaceholder = placeholder; },
+                        onSelectOption: (String placeholder) {
+                          routePlaceholder = placeholder;
+                        },
                         options: const [],
                       ),
                     ],
                   ),
-                  const SizedBox( height: 20.0,),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         'Pick Time:  ',
-                        style: TextStyle(fontFamily: 'SpaceMono', fontSize: 20.0, fontWeight: FontWeight.normal,),
+                        style: TextStyle(
+                          fontFamily: 'SpaceMono',
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                       TimeSelection(),
                     ],
                   ),
-                  const SizedBox( height: 40.0,),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
                   ElevatedButton(
                     onPressed: () => {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red, 
-                      foregroundColor: Colors.white,// background color
+                      backgroundColor: Colors.red,
+                      foregroundColor: Colors.white, // background color
                       elevation: 5, // button's elevation
                       textStyle: const TextStyle(
                         color: Colors.white, // text color
@@ -131,14 +146,20 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text('Available Routes',
-                style: TextStyle( fontFamily: 'SpaceMono', fontSize: 20.0, fontWeight: FontWeight.bold),
+              child: Text(
+                'Available Routes',
+                style: TextStyle(
+                    fontFamily: 'SpaceMono',
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 2.0),
-              child: Text('Today',
-                style: TextStyle( fontFamily: 'SpaceMono', fontSize: 20.0, color: Colors.red),
+              child: Text(
+                'Today',
+                style: TextStyle(
+                    fontFamily: 'SpaceMono', fontSize: 20.0, color: Colors.red),
               ),
             ),
             TripList(trips: _trips),
@@ -148,11 +169,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const TripList(trips: [],)),
+                    MaterialPageRoute(
+                        builder: (context) => TripList(
+                              trips: _trips,
+                            )),
                   );
                 },
                 child: const Text(
-                  'See more...',
+                  'Click to see more...',
                   style: TextStyle(
                     fontFamily: 'SpaceMono',
                     fontSize: 17.0,
@@ -161,7 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-          ],),
+          ],
+        ),
       ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
     );

@@ -20,6 +20,17 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
 
   String routePlaceholder = 'NRB-ELD';
 
+  void _showNotification(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(message),
+        duration: const Duration(
+            seconds: 5), // Adjust the duration as per your preference
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -246,6 +257,9 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                   _formKey.currentState!.save();
                   _verifyDriver(context);
                 }
+
+                _showNotification(
+                    'Form submitted Successfully. Please await verification');
 
                 Navigator.pushNamed(context, '/driverhome');
               },
