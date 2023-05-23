@@ -35,6 +35,17 @@ class _BidTripScreenState extends State<BidTripScreen> {
     return 'NRB-ELD';
   }
 
+  void _showNotification(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(message),
+        duration: const Duration(
+            seconds: 5), // Adjust the duration as per your preference
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,60 +61,80 @@ class _BidTripScreenState extends State<BidTripScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text('Bid on a New Trip',
+                  const Text(
+                    'Bid on a New Trip',
                     style: TextStyle(
                       fontFamily: 'SpaceMono',
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text('- Check for a slot from Beba :)',
+                  const Text(
+                    '- Check for a slot from Beba :)',
                     style: TextStyle(
                       fontFamily: 'SpaceMono',
                       fontSize: 15.0,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  const SizedBox( height: 20.0,),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   Row(
                     children: [
-                      const Text('Route Name: ',
-                        style: TextStyle( fontFamily: 'SpaceMono'),
+                      const Text(
+                        'Route Name: ',
+                        style: TextStyle(fontFamily: 'SpaceMono'),
                       ),
                       RoutesSelection(
-                        options: const [], 
+                        options: const [],
                         onSelectOption: (String value) {
                           driverRoute = value;
                         },
                       ),
-                      const SizedBox( width: 15.0,),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
                       GestureDetector(
-                        onTap: () => { Navigator.pushNamed(context, '/driverification') },
-                        child: const Text('change route?', 
-                          style: TextStyle(color: Colors.red, fontFamily: 'SpaceMono', decoration: TextDecoration.underline, decorationColor: Colors.red),
+                        onTap: () =>
+                            {Navigator.pushNamed(context, '/driverification')},
+                        child: const Text(
+                          'change route?',
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'SpaceMono',
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.red),
                         ),
                       )
                     ],
                   ),
-                  const SizedBox( height: 20.0,),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   const Row(
                     children: [
-                      Text('Pick time: ',
-                        style: TextStyle( fontFamily: 'SpaceMono'),
+                      Text(
+                        'Pick time: ',
+                        style: TextStyle(fontFamily: 'SpaceMono'),
                       ),
                       TimeSelection(),
                     ],
                   ),
                   ElevatedButton(
                     onPressed: () => {
-                      Navigator.pushNamed(context, '/tripconfirmation'),
-                    }, 
+                      //snackbar notification
+                      _showNotification(
+                          'Your bid has been made. Please await approval.'),
+                      Navigator.pushNamed(context, '/driverhome'),
+                    },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.red,
                     ),
-                    child: const Text('Submit',
-                      style: TextStyle( fontSize: 15.0),
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(fontSize: 15.0),
                     ),
                   ),
                 ],

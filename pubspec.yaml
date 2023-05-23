@@ -54,6 +54,8 @@ dependencies:
   pinput: ^2.2.31
   widget_circular_animator: ^1.0.0
   firebase_analytics: ^10.4.1
+  firebase_messaging: ^14.6.1
+  overlay_support: ^2.1.0
 
 dev_dependencies:
   flutter_test:
