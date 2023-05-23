@@ -16,7 +16,7 @@ class AgentBenefitsContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Become a Beba Agent today:)',
+            'Beba offers:',
             style: TextStyle(
               color: Colors.white,
               fontSize: 24.0,
@@ -34,7 +34,7 @@ class AgentBenefitsContainer extends StatelessWidget {
             icon: Icons.local_shipping,
             title: 'Wide Range of Travellers',
             description:
-                'Deliver various types of packages and goods, ranging from small parcels to large shipments.',
+                'Help onboard travellers from anywhere and everywhere.',
           ),
           BenefitCard(
             icon: Icons.attach_money,
