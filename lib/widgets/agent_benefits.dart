@@ -9,7 +9,7 @@ class AgentBenefitsContainer extends StatelessWidget {
       width: 300.0,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.red[700],
+        color: Colors.grey,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: const Column(

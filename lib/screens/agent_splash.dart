@@ -31,11 +31,19 @@ class _AgentSplashState extends State<AgentSplash> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            Text(
+              '- Leverage on time. Get everything set.',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
             SizedBox(
               height: 10.0,
             ),
             AgentBenefitsContainer(),
-            Divider(),
+            Divider(
+              thickness: 4.0,
+            ),
             AgentHeroContainer(),
             SizedBox(
               height: 20.0,

@@ -43,7 +43,6 @@ class _AgentDashboardState extends State<AgentDashboard> {
             const SizedBox(
               height: 10.0,
             ),
-            // TODO: Add more relevant agent dashboard
             const Text(
               'Trips of the Day',
               style: TextStyle(
@@ -96,6 +95,31 @@ class _AgentDashboardState extends State<AgentDashboard> {
               height: 10.0,
             ),
             TripList(trips: _trips),
+            const SizedBox(
+              height: 15.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TripList(
+                              trips: _trips,
+                            )),
+                  );
+                },
+                child: const Text(
+                  'Click to see more...',
+                  style: TextStyle(
+                    fontFamily: 'SpaceMono',
+                    fontSize: 17.0,
+                    color: Colors.lightBlue,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

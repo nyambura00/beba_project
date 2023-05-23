@@ -45,8 +45,15 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
               'Driver Verification Form',
               style: TextStyle(
                 fontFamily: 'SpaceMono',
-                fontSize: 20.0,
+                fontSize: 25.0,
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+              '- Fill details carefully',
+              style: TextStyle(
+                fontFamily: 'SpaceMono',
+                fontSize: 15.0,
               ),
             ),
             Padding(
@@ -68,152 +75,131 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                       const SizedBox(
                         height: 20.0,
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          labelText: 'Full Name',
-                          hintText: 'As per ID',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                              width: 0.7, // set the width here
+                      SizedBox(
+                        width: 300.0,
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: 'Full Name',
+                            hintText: 'Enter Name As per ID',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 0.7, // set the width here
+                              ),
+                              // borderRadius:
+                              //     BorderRadius.all(Radius.circular(1.0)),
                             ),
-                            // borderRadius:
-                            //     BorderRadius.all(Radius.circular(1.0)),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your full name';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _fullName = value!;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your full name';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _fullName = value!;
-                        },
+                      ),
+                      const SizedBox(
+                        height: 10.0,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: const Row(
-                          children: [
-                            Text('Upload Driver Image:',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                )),
-                            ImagePickerButton(),
-                          ],
+                        width: 300.0,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'License Number',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your license number';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _licenseNumber = value!;
+                          },
                         ),
                       ),
                       const SizedBox(
                         height: 10.0,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'License Number',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.grey, width: 1.0),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your license number';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _licenseNumber = value!;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'NTSA Number',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.grey, width: 1.0),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your NTSA number';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _licenseNumber = value!;
-                        },
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: const Row(
-                          children: [
-                            Text('Upload NTSA:',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                )),
-                            ImagePickerButton(),
-                          ],
+                        width: 300.0,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'NTSA Number',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your NTSA number';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _licenseNumber = value!;
+                          },
                         ),
                       ),
                       const SizedBox(
                         height: 10.0,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'ID Number',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.grey, width: 0.7),
-                            borderRadius: BorderRadius.circular(2.0),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your ID Number';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _idNumber = value!;
-                        },
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: const Row(
-                          children: [
-                            Text('Upload ID:',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                )),
-                            ImagePickerButton(),
-                          ],
+                        width: 300.0,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'ID Number',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 0.7),
+                              borderRadius: BorderRadius.circular(2.0),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your ID Number';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _idNumber = value!;
+                          },
                         ),
                       ),
                       const SizedBox(
                         height: 10.0,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Plate Number',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.grey, width: 1.0),
-                            borderRadius: BorderRadius.circular(8.0),
+                      SizedBox(
+                        width: 300.0,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Plate Number',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter Car Plate Number';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _idNumber = value!;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter Car Plate Number';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _idNumber = value!;
-                        },
                       ),
                       const SizedBox(
                         height: 10.0,
@@ -237,10 +223,52 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                         width: MediaQuery.of(context).size.width,
                         child: const Row(
                           children: [
-                            Text('Upload Vehicle Image:',
+                            Text(
+                              'Upload ID:',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            ImagePickerButton(),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const Row(
+                          children: [
+                            Text('Upload NTSA:',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                 )),
+                            ImagePickerButton(),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const Row(
+                          children: [
+                            Text(
+                              'Upload Driver Image:',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            ImagePickerButton(),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const Row(
+                          children: [
+                            Text(
+                              'Upload Vehicle Image:',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
                             ImagePickerButton(),
                           ],
                         ),

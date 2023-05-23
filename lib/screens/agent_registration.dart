@@ -1,4 +1,5 @@
 import 'package:beba_app/widgets/app_bar.dart';
+import 'package:beba_app/widgets/image_picker.dart';
 import 'package:flutter/material.dart';
 
 class AgentRegistration extends StatefulWidget {
@@ -16,6 +17,17 @@ class _AgentRegistrationState extends State<AgentRegistration> {
   String? _phoneNumber;
   String? _location;
 
+  void _showNotification(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(message),
+        duration: const Duration(
+            seconds: 5), // Adjust the duration as per your preference
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +38,11 @@ class _AgentRegistrationState extends State<AgentRegistration> {
           key: _formKey,
           child: ListView(
             children: [
+              const Text(
+                'Agent Registration',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+              ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Full Name'),
                 validator: (value) {
@@ -37,6 +54,9 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                 onSaved: (value) {
                   _fullName = value;
                 },
+              ),
+              const SizedBox(
+                height: 5.0,
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'ID No'),
@@ -50,6 +70,9 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                   _idNo = value;
                 },
               ),
+              const SizedBox(
+                height: 5.0,
+              ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Phone Number'),
                 validator: (value) {
@@ -61,6 +84,9 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                 onSaved: (value) {
                   _phoneNumber = value;
                 },
+              ),
+              const SizedBox(
+                height: 5.0,
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Location'),
@@ -74,6 +100,23 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                   _location = value;
                 },
               ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: const Row(
+                  children: [
+                    Text(
+                      'Upload ID:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
+                    ImagePickerButton(),
+                  ],
+                ),
+              ),
               const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
@@ -82,6 +125,8 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                   //   // TODO: Handle form submission
                   //   Navigator.pushNamed(context, '/agentdashboard');
                   // }
+                  _showNotification('Thank you for your interest.');
+                  _showNotification('Please await verification');
                   Navigator.pushNamed(context, '/agentdashboard');
                 },
                 child: const Text('Submit'),

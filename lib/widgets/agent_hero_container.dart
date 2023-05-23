@@ -10,7 +10,7 @@ class AgentHeroContainer extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.grey,
+          color: Colors.black,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -26,7 +26,7 @@ class AgentHeroContainer extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Leverage on time. Get everything set.',
+              'Click the button below and complete the agent form',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -42,7 +42,7 @@ class AgentHeroContainer extends StatelessWidget {
               },
               child: const Text(
                 'Get Started',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 20.0, backgroundColor: Colors.red),
               ),
             ),
           ],
