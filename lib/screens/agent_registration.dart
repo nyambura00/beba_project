@@ -77,10 +77,12 @@ class _AgentRegistrationState extends State<AgentRegistration> {
               const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-                    // TODO: Handle form submission
-                  }
+                  // if (_formKey.currentState!.validate()) {
+                  //   _formKey.currentState!.save();
+                  //   // TODO: Handle form submission
+                  //   Navigator.pushNamed(context, '/agentdashboard');
+                  // }
+                  Navigator.pushNamed(context, '/agentdashboard');
                 },
                 child: const Text('Submit'),
               ),
