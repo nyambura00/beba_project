@@ -8,7 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/screens/auth/otp_screen.dart';
 import 'package:beba_app/utils/utils.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+enum UserType {
+  superAdmin,
+  agent,
+  driver,
+  defaultUser,
+}
 
 class AuthProvider extends ChangeNotifier {
   bool _isSignedIn = false;
@@ -19,6 +27,9 @@ class AuthProvider extends ChangeNotifier {
   String get uid => _uid!;
   UserModel? _userModel;
   UserModel get userModel => _userModel!;
+
+  UserType _currentUserRole = UserType.defaultUser;
+  UserType get currentUserRole => _currentUserRole;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -111,15 +122,21 @@ class AuthProvider extends ChangeNotifier {
     required UserModel userModel,
     required File profilePic,
     required Function onSuccess,
+    required UserType userType,
   }) async {
     _isLoading = true;
     notifyListeners();
     try {
+      // Set the initial user role
+      UserType userRole = getUserRole();
+      Provider.of<AuthProvider>(context, listen: false).setUserRole(userRole);
+
       await storeFileToStorage("profilePic/$_uid", profilePic).then((value) {
         userModel.profilePic = value;
         userModel.createdAt = DateTime.now().millisecondsSinceEpoch.toString();
         userModel.phoneNumber = _firebaseAuth.currentUser!.phoneNumber!;
         userModel.uid = _firebaseAuth.currentUser!.phoneNumber!;
+        userModel.role = getUserRole().toString();
       });
       _userModel = userModel;
 
@@ -158,6 +175,7 @@ class AuthProvider extends ChangeNotifier {
         phoneNumber: snapshot['phoneNumber'],
         uid: snapshot['uid'],
         name: snapshot['name'],
+        role: snapshot['role'],
       );
       _uid = userModel.uid;
     });
@@ -178,15 +196,41 @@ class AuthProvider extends ChangeNotifier {
 
   Future userSignOut(context) async {
     SharedPreferences s = await SharedPreferences.getInstance();
-    try{
+    try {
       await _firebaseAuth.signOut();
       _isSignedIn = false;
       notifyListeners();
       s.clear();
-      Navigator.pushNamedAndRemoveUntil(
-        context, "/signin", (route) => false);
-    } catch(e) {
+      Navigator.pushNamedAndRemoveUntil(context, "/signin", (route) => false);
+    } catch (e) {
       print(e);
+    }
+  }
+
+  void setUserRole(UserType userType) {
+    _currentUserRole = userType;
+    notifyListeners();
+  }
+
+  UserType getUserRole() {
+    if (_firebaseAuth.currentUser != null) {
+      // Access the user's role from your user data
+      String userRole =
+          _userModel?.role ?? ''; // Update with the actual user role field
+
+      // Map the user role string to the corresponding UserType enum value
+      switch (userRole) {
+        case 'SUPER_ADMIN':
+          return UserType.superAdmin;
+        case 'AGENT':
+          return UserType.agent;
+        case 'DRIVER':
+          return UserType.driver;
+        default:
+          return UserType.defaultUser;
+      }
+    } else {
+      return UserType.defaultUser;
     }
   }
 }

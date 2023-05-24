@@ -1,4 +1,3 @@
-import 'package:beba_app/screens/agent_registration.dart';
 import 'package:beba_app/widgets/agent_benefits.dart';
 import 'package:beba_app/widgets/agent_hero_container.dart';
 import 'package:beba_app/widgets/app_bar.dart';

@@ -1,20 +1,30 @@
+import 'package:beba_app/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/model/trip.dart';
+import 'package:provider/provider.dart';
 
 class TripCard extends StatefulWidget {
   final Trip trip;
+  final bool isApproved;
 
-  const TripCard({super.key, required this.trip});
+  const TripCard({
+    Key? key,
+    required this.trip,
+    this.isApproved = false,
+  }) : super(key: key);
 
   @override
   State<TripCard> createState() => _TripCardState();
 }
 
 class _TripCardState extends State<TripCard> {
-  bool isApproved = false;
-
   @override
   Widget build(BuildContext context) {
+    // final UserType userType = Provider.of<AuthProvider>(context).getUserType();
+
+    // bool canApproveTrip =
+    //     userType == UserType.agent || userType == UserType.superAdmin;
+
     return Card(
       color: Colors.grey,
       elevation: 1.0,
@@ -68,15 +78,20 @@ class _TripCardState extends State<TripCard> {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isApproved ? Colors.black : Colors.red,
+                    backgroundColor:
+                        widget.isApproved ? Colors.black : Colors.red,
                     foregroundColor: Colors.white,
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/tripunit');
-                  },
-                  child: Text(isApproved
-                      ? 'Book Trip'
-                      : 'Approve Trip'), // Show appropriate text based on approval state
+                  onPressed: widget.isApproved
+                      ? () {
+                          Navigator.pushNamed(context, '/tripunit',
+                              arguments: widget.trip);
+                        }
+                      : () {
+                          // Handle trip approval logic here
+                          // canApproveTrip ? :
+                        },
+                  child: Text(widget.isApproved ? 'Book Trip' : 'Approve Trip'),
                 ),
               ],
             ),

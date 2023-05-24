@@ -1,4 +1,3 @@
-import 'package:beba_app/screens/driver_verification.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/contact_card.dart';
 import 'package:beba_app/widgets/driver_hero_container.dart';

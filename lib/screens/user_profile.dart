@@ -177,18 +177,19 @@ class _UserProfileState extends State<UserProfile> {
   void storeData() async {
     final ap = Provider.of<AuthProvider>(context, listen: false);
     UserModel userModel = UserModel(
-      bio: bioController.text.trim(),
-      profilePic: "",
-      createdAt: "",
-      uid: "",
-      name: nameController.text.trim(),
-      phoneNumber: phoneNumberController.text.trim(),
-    );
+        bio: bioController.text.trim(),
+        profilePic: "",
+        createdAt: "",
+        uid: "",
+        name: nameController.text.trim(),
+        phoneNumber: phoneNumberController.text.trim(),
+        role: "");
     if (image != null) {
       ap.saveUserDataToFirebase(
         context: context,
         userModel: userModel,
         profilePic: image!,
+        userType: UserType.defaultUser,
         onSuccess: () {
           ap.saveUserDataToSP().then(
                 (value) => ap.setSignIn().then(

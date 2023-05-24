@@ -87,14 +87,15 @@ class _AgentDashboardState extends State<AgentDashboard> {
             const Text(
               'Pending Trips...',
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green),
+                  fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red),
             ),
             const SizedBox(
               height: 10.0,
             ),
-            TripList(trips: _trips),
+            TripList(
+              trips: _trips,
+              showAllTrips: true,
+            ),
             const SizedBox(
               height: 15.0,
             ),
@@ -107,6 +108,7 @@ class _AgentDashboardState extends State<AgentDashboard> {
                     MaterialPageRoute(
                         builder: (context) => TripList(
                               trips: _trips,
+                              showAllTrips: true,
                             )),
                   );
                 },

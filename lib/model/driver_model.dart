@@ -10,6 +10,7 @@ class Driver {
   String imageAddress;
   String route;
   late String createdAt;
+  String userId;
 
   Driver({
     this.id,
@@ -20,9 +21,10 @@ class Driver {
     required this.ntsaNumber,
     required this.imageAddress,
     required this.route,
+    required this.userId,
   }) {
-    createdAt = DateTime.now().toString();  // generate createdAt attribute
-    id = const Uuid().v4(); 
+    createdAt = DateTime.now().toString(); // generate createdAt attribute
+    id = const Uuid().v4();
   }
 
   factory Driver.fromMap(Map<String, dynamic> map) {
@@ -35,6 +37,7 @@ class Driver {
       ntsaNumber: map['ntsaNumber'] ?? '',
       imageAddress: map['imageAddress'] ?? '',
       route: map['route'] ?? '',
+      userId: map['userId'] ?? '',
     );
   }
 
@@ -49,12 +52,12 @@ class Driver {
       'imageAddress': imageAddress,
       'route': route,
       'createdAt': createdAt,
+      'userId': userId,
     };
   }
 
   @override
   String toString() {
-    return 'Driver{ id: $id, fullName: $fullName, idNumber: $idNumber, licenseNumber: $licenseNumber, plateNumber: $plateNumber, ntsaNumber: $ntsaNumber, imageAddress: $imageAddress, route: $route, createdAt: $createdAt}';
+    return 'Driver{ id: $id, fullName: $fullName, idNumber: $idNumber, licenseNumber: $licenseNumber, plateNumber: $plateNumber, ntsaNumber: $ntsaNumber, imageAddress: $imageAddress, route: $route, createdAt: $createdAt, userId: $userId}';
   }
 }
-

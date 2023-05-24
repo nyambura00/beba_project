@@ -58,7 +58,10 @@ class _TripConfirmationState extends State<TripConfirmation> {
             const SizedBox(
               height: 20.0,
             ),
-            TripList(trips: _trips),
+            TripList(
+              trips: _trips,
+              showAllTrips: true,
+            ),
           ],
         ),
       ),

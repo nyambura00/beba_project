@@ -5,6 +5,7 @@ class UserModel {
   String profilePic;
   String phoneNumber;
   String createdAt;
+  String role;
 
   UserModel({
     required this.uid,
@@ -13,6 +14,7 @@ class UserModel {
     required this.profilePic,
     required this.phoneNumber,
     required this.createdAt,
+    required this.role,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
@@ -23,6 +25,7 @@ class UserModel {
       profilePic: map['profilePic'] ?? '',
       phoneNumber: map['phoneNumber'] ?? '',
       createdAt: map['createdAt'] ?? '',
+      role: map['role'] ?? '',
     );
   }
 
@@ -34,6 +37,7 @@ class UserModel {
       "profilePic": profilePic,
       "phoneNumber": phoneNumber,
       "createdAt": createdAt,
+      "role": role,
     };
   }
 }
