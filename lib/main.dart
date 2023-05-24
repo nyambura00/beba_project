@@ -31,6 +31,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const MyApp());
@@ -38,6 +39,25 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  Future<void> initializeTrips(BuildContext context) async {
+    final tripsService = TripsService();
+
+    // Check if the trips collection is empty
+    final trips = await tripsService.getTrips();
+    if (trips.isEmpty) {
+      // Create the Genesis Trip
+      final genesisTrip = Trip(
+        source: 'NRB',
+        destination: 'ELD',
+        unitFare: 1000,
+        vehicleId: 12233455,
+        startTime: DateTime.now().toString(),
+        driverId: 'OXDriver1',
+      );
+      tripsService.addTrip(genesisTrip);
+    }
+  }
 
   // This widget is the root of your application.
   @override
@@ -52,7 +72,23 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
-        home: const LandingPage(),
+        home: FutureBuilder<void>(
+          future: initializeTrips(context),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox(
+                width: 30,
+                height: 30,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
+                ),
+              ); // Show a loading indicator
+            } else {
+              return const LandingPage();
+            }
+          },
+        ),
         initialRoute: '/',
         routes: {
           '/authgate': (context) => const AuthGate(),
@@ -89,28 +125,9 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  late TripsService _tripsService;
-
   @override
   void initState() {
     super.initState();
-    _tripsService = TripsService();
-
-    // Check if the trips collection is empty
-    _tripsService.getTrips().then((trips) {
-      if (trips.isEmpty) {
-        // Create the Genesis Trip
-        final genesisTrip = Trip(
-          source: 'NRB',
-          destination: 'ELD',
-          unitFare: 1000,
-          vehicleId: 12233455,
-          startTime: DateTime.now().toString(),
-          driverId: 'OXDriver1',
-        );
-        _tripsService.addTrip(genesisTrip);
-      }
-    });
 
     Timer(const Duration(seconds: 3), () {
       Navigator.pushNamed(
