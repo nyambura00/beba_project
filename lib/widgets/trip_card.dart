@@ -68,7 +68,7 @@ class _TripCardState extends State<TripCard> {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isApproved ? Colors.green : Colors.black,
+                    backgroundColor: isApproved ? Colors.black : Colors.red,
                     foregroundColor: Colors.white,
                   ),
                   onPressed: () {

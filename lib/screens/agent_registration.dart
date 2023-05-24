@@ -1,3 +1,4 @@
+import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +17,6 @@ class _AgentRegistrationState extends State<AgentRegistration> {
   String? _idNo;
   String? _phoneNumber;
   String? _location;
-
-  void _showNotification(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green,
-        content: Text(message),
-        duration: const Duration(
-            seconds: 5), // Adjust the duration as per your preference
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,8 +115,8 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                   //   // TODO: Handle form submission
                   //   Navigator.pushNamed(context, '/agentdashboard');
                   // }
-                  _showNotification('Thank you for your interest.');
-                  _showNotification('Please await verification');
+                  showSnackBar(context, 'Thank you for the interest');
+                  showSnackBar(context, 'Please await verification');
                   Navigator.pushNamed(context, '/agentdashboard');
                 },
                 child: const Text('Submit'),

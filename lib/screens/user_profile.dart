@@ -54,8 +54,8 @@ class _UserProfileState extends State<UserProfile> {
                     ),
                   )
                 : SingleChildScrollView(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 25.0, horizontal: 5.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 25.0, horizontal: 5.0),
                     child: Center(
                       child: Column(
                         children: [

@@ -1,3 +1,4 @@
+import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:beba_app/widgets/routes_selection.dart';
@@ -33,17 +34,6 @@ class _BidTripScreenState extends State<BidTripScreen> {
     // Replace this with your own Firebase query to retrieve the driver's route value
     // Instance of a hard-coded value
     return 'NRB-ELD';
-  }
-
-  void _showNotification(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green,
-        content: Text(message),
-        duration: const Duration(
-            seconds: 5), // Adjust the duration as per your preference
-      ),
-    );
   }
 
   @override
@@ -123,8 +113,7 @@ class _BidTripScreenState extends State<BidTripScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () => {
-                      //snackbar notification
-                      _showNotification(
+                      showSnackBar(context,
                           'Bid submitted successfully. Please await approval.'),
                       Navigator.pushNamed(context, '/tripconfirmation'),
                     },

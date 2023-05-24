@@ -1,3 +1,4 @@
+import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/image_picker.dart';
 import 'package:beba_app/widgets/routes_selection.dart';
@@ -19,17 +20,6 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
   // late final _imageAddress = '';
 
   String routePlaceholder = 'NRB-ELD';
-
-  void _showNotification(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green,
-        content: Text(message),
-        duration: const Duration(
-            seconds: 5), // Adjust the duration as per your preference
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -286,7 +276,7 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
                   _verifyDriver(context);
                 }
 
-                _showNotification(
+                showSnackBar(context,
                     'Form submitted Successfully. Please await verification');
 
                 Navigator.pushNamed(context, '/driverhome');
