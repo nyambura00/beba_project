@@ -110,7 +110,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   // redirect to /userhome screen
                                   Navigator.pushNamed(context, '/userhome');
                                 } else {
-                                  showSnackBar(context, "Enter 6-digit code");
+                                  showSnackBar(context, "Enter the OTP code");
                                 }
                               },
                             ),
@@ -122,10 +122,9 @@ class _OtpScreenState extends State<OtpScreen> {
                             child: CustomButton(
                               text: "Resend OTP",
                               onPressed: () {
-                                if (otpCode != null) {
-                                  verifyOtp(context, otpCode!);
-                                  // redirect to /userhome screen
-                                  Navigator.pushNamed(context, '/userhome');
+                                if (otpCode == null) {
+                                  // resign in
+                                  Navigator.pushNamed(context, '/signin');
                                 } else {
                                   showSnackBar(context, "Contact Beba?");
                                   Navigator.pushNamed(context, '/contact');
