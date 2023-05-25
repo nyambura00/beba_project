@@ -1,12 +1,9 @@
 import 'package:beba_app/model/user_model.dart';
-import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:beba_app/model/trip.dart';
-import 'package:path/path.dart';
-import 'package:provider/provider.dart';
 
 class TripsProvider extends ChangeNotifier {
   // final FirebaseFirestore _firestore = FirebaseFirestore.instance;

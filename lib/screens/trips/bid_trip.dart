@@ -1,9 +1,12 @@
+import 'package:beba_app/model/driver_model.dart';
+import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:beba_app/widgets/routes_selection.dart';
 import 'package:beba_app/widgets/time_selection.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BidTripScreen extends StatefulWidget {
   const BidTripScreen({super.key});
@@ -16,7 +19,15 @@ class _BidTripScreenState extends State<BidTripScreen> {
   final _formKey = GlobalKey<FormState>();
 
   //a variable to hold the driver's route value
-  String driverRoute = '';
+  late String driverRoute = '';
+
+  //a variable to hold user route placeholder
+  late String userRoute = '';
+
+  bool get isDriver {
+    final currentUserType = Provider.of<AuthProvider>(context).currentUserRole;
+    return currentUserType == UserType.driver;
+  }
 
   @override
   void initState() {
@@ -29,11 +40,17 @@ class _BidTripScreenState extends State<BidTripScreen> {
     });
   }
 
-  // TODO
   Future<String> getDriverRoute() async {
-    // Replace this with your own Firebase query to retrieve the driver's route value
-    // Instance of a hard-coded value
-    return 'NRB-ELD';
+    try {
+      final userSelectedRoute = Provider.of<Driver>(context).route;
+      driverRoute = userSelectedRoute;
+      return driverRoute;
+    } catch (e) {
+      showSnackBar(context, 'Only drivers can bid on trips');
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/driverification', (route) => false);
+      rethrow;
+    }
   }
 
   @override
@@ -73,13 +90,23 @@ class _BidTripScreenState extends State<BidTripScreen> {
                   Row(
                     children: [
                       const Text(
-                        'Route Name: ',
+                        'Registered Route: ',
                         style: TextStyle(fontFamily: 'SpaceMono'),
                       ),
                       RoutesSelection(
-                        options: const [],
-                        onSelectOption: (String value) {
-                          driverRoute = value;
+                        options: isDriver ? null : const [],
+                        onSelectOption: (selectedOption) {
+                          try {
+                            isDriver
+                                ? setState(
+                                    () => driverRoute = selectedOption,
+                                  )
+                                : null;
+                          } catch (e) {
+                            print(e);
+                            showSnackBar(context,
+                                'Drivers cannot change their registered route');
+                          }
                         },
                       ),
                       const SizedBox(
