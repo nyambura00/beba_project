@@ -14,12 +14,8 @@ class TripList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Filter trips based on approval status
-    List<Trip> filteredTrips = showAllTrips
-        ? trips // Show all trips if showAllTrips is true
-        : trips
-            .where((trip) => trip.isApproved)
-            .toList(); // Show only approved trips
+    List<Trip> filteredTrips =
+        showAllTrips ? trips : trips.where((trip) => trip.isApproved).toList();
 
     return ListView.builder(
       shrinkWrap: true,

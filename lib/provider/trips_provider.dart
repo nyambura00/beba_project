@@ -10,24 +10,31 @@ class TripsProvider extends ChangeNotifier {
       FirebaseFirestore.instance.collection('trips');
 
   // Create a new trip
-  Future<void> createTrip(BuildContext context, Trip trip) async {
+  Future<void> createTrip(Trip trip) async {
     try {
       await _tripsCollection.add(trip.toMap());
       notifyListeners();
     } catch (error) {
       // Handle the error appropriately
-      showSnackBar(context, 'Error creating trip: $error');
+      print(error);
+      // showSnackBar('Error creating trip: $error');
     }
   }
 
   // Get all trips
-  Stream<List<Trip>> get trips {
-    return _tripsCollection.snapshots().map((snapshot) {
-      return snapshot.docs
+  Future<List<Trip>> fetchTrips(BuildContext context) async {
+    try {
+      final trips = await _tripsCollection
+          .where('isApproved', whereIn: [true, false]).get();
+      return trips.docs
           .map(
               (doc) => Trip.fromMap(doc.data() as Map<String, dynamic>, doc.id))
           .toList();
-    });
+    } catch (e) {
+      print(e);
+      showSnackBar(context, 'Error fetching Trips from db');
+      return [];
+    }
   }
 
   // Update an existing trip

@@ -1,6 +1,7 @@
 import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/trips/trips_list.dart';
-import 'package:beba_app/services/trips.dart';
+import 'package:beba_app/utils/utils.dart';
 
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
@@ -21,21 +22,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppbarWidget appBarWidget = const AppbarWidget();
 
-  late TripsService _tripsService;
+  late TripsProvider _tripsService;
   List<Trip> _trips = [];
 
   @override
   void initState() {
     super.initState();
-    _tripsService = TripsService();
+    _tripsService = TripsProvider();
     _initTrips();
   }
 
   void _initTrips() async {
-    final trips = await _tripsService.getTrips();
+    final trips = await _tripsService.fetchTrips(context);
     setState(() {
       _trips = trips;
     });
+  }
+
+  void searchTripsHandler(routeQuery, timeQuery) {
+    // TODO: Complete the search function
   }
 
   @override
@@ -121,7 +126,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 40.0,
                   ),
                   ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      // user search logic for routes
+                      if (routePlaceholder.isNotEmpty &&
+                          timePlaceholder.isNotEmpty)
+                        {
+                          // searchTripsHandler()
+                        }
+                      else
+                        {
+                          showSnackBar(context, 'Please select a Trip Route'),
+                          showSnackBar(context, 'Error searching for a trip'),
+                        }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                       foregroundColor: Colors.white, // background color

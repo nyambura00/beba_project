@@ -22,7 +22,7 @@ import 'package:beba_app/screens/trips/bid_trip.dart';
 import 'package:beba_app/screens/trips/book_trip.dart';
 import 'package:beba_app/screens/trips/unit_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
-import 'package:beba_app/services/trips.dart';
+// import 'package:beba_app/services/trips.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
 
@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   Future<void> initializeTrips(BuildContext context) async {
-    final tripsService = TripsService();
+    final tripsService = TripsProvider();
 
     // Check if the trips collection is empty
-    final trips = await tripsService.getTrips();
+    final trips = await tripsService.fetchTrips(context);
     if (trips.isEmpty) {
       // Create the Genesis Trip
       final genesisTrip = Trip(
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         startTime: DateTime.now().toString(),
         driverId: 'OXDriver1',
       );
-      tripsService.addTrip(genesisTrip);
+      tripsService.createTrip(genesisTrip);
     }
   }
 

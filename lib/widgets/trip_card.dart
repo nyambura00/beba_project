@@ -31,10 +31,12 @@ class _TripCardState extends State<TripCard> {
         userType == UserType.agent || userType == UserType.superAdmin;
 
     if (canApproveTrip) {
-      trip!.isApproved = true;
-      tripsProvider.approveTrip(context, trip.id);
+      if (trip != null) {
+        tripsProvider.approveTrip(context, trip!.id);
+        trip.isApproved = true;
 
-      showSnackBar(context, 'Trip has been approved successfully');
+        showSnackBar(context, 'Trip has been approved successfully');
+      }
     } else {
       // User does not have the authority to approve trips
       showSnackBar(context, 'Role error: You cannot approve trips.');

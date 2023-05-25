@@ -1,5 +1,5 @@
+import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/trips/trips_list.dart';
-import 'package:beba_app/services/trips.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +13,18 @@ class TripConfirmation extends StatefulWidget {
 }
 
 class _TripConfirmationState extends State<TripConfirmation> {
-  late TripsService _tripsService;
+  late TripsProvider _tripsService;
   List<Trip> _trips = [];
 
   @override
   void initState() {
     super.initState();
-    _tripsService = TripsService();
+    _tripsService = TripsProvider();
     _initTrips();
   }
 
   void _initTrips() async {
-    final trips = await _tripsService.getTrips();
+    final trips = await _tripsService.fetchTrips(context);
     setState(() {
       _trips = trips;
     });
