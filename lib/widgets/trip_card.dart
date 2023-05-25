@@ -1,4 +1,6 @@
 import 'package:beba_app/provider/auth_provider.dart';
+import 'package:beba_app/provider/trips_provider.dart';
+import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/model/trip.dart';
 import 'package:provider/provider.dart';
@@ -18,13 +20,30 @@ class TripCard extends StatefulWidget {
 }
 
 class _TripCardState extends State<TripCard> {
+  void approveTrips(BuildContext context, Trip? trip) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final userType = authProvider.getUserRole();
+
+    final tripsProvider = Provider.of<TripsProvider>(context, listen: false);
+
+    // Check if the user has the authority to approve trips
+    bool canApproveTrip =
+        userType == UserType.agent || userType == UserType.superAdmin;
+
+    if (canApproveTrip) {
+      trip!.isApproved = true;
+      tripsProvider.approveTrip(context, trip.id);
+
+      showSnackBar(context, 'Trip has been approved successfully');
+    } else {
+      // User does not have the authority to approve trips
+      showSnackBar(context, 'Role error: You cannot approve trips.');
+      showSnackBar(context, 'Please contact Beba support.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // final UserType userType = Provider.of<AuthProvider>(context).getUserType();
-
-    // bool canApproveTrip =
-    //     userType == UserType.agent || userType == UserType.superAdmin;
-
     return Card(
       color: Colors.grey,
       elevation: 1.0,
@@ -88,8 +107,16 @@ class _TripCardState extends State<TripCard> {
                               arguments: widget.trip);
                         }
                       : () {
-                          // Handle trip approval logic here
-                          // canApproveTrip ? :
+                          try {
+                            // Handle trip approval logic here
+                            approveTrips(context, widget.trip);
+                            showSnackBar(
+                                context, 'Trip has been successfully approved');
+                          } catch (e) {
+                            // Handle trip approval error
+                            print(e);
+                            showSnackBar(context, 'Error in Trip Approval');
+                          }
                         },
                   child: Text(widget.isApproved ? 'Book Trip' : 'Approve Trip'),
                 ),

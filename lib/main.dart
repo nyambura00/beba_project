@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:beba_app/model/trip.dart';
 import 'package:beba_app/provider/auth_provider.dart';
+import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/account_settings.dart';
 import 'package:beba_app/screens/agent_home.dart';
 import 'package:beba_app/screens/agent_registration.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => TripsProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
       child: MaterialApp(
