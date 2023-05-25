@@ -89,10 +89,11 @@ class TripsProvider extends ChangeNotifier {
   }
 
   // Search trips based on criteria
-  Stream<List<Trip>> searchTrips(String searchQuery) {
+  Stream<List<Trip>> searchTrips(String searchQuery, String selectedTime) {
     return _tripsCollection
-        .where('source', isGreaterThanOrEqualTo: searchQuery)
-        .where('source', isLessThan: '${searchQuery}z')
+        .where('destination', isGreaterThanOrEqualTo: searchQuery)
+        .where('destination', isLessThan: '$searchQuery\uf8ff')
+        .where('startTime', isEqualTo: selectedTime)
         .snapshots()
         .map((snapshot) {
       return snapshot.docs

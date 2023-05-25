@@ -60,7 +60,6 @@ class _TripConfirmationState extends State<TripConfirmation> {
             ),
             TripList(
               trips: _trips,
-              showAllTrips: true,
             ),
           ],
         ),

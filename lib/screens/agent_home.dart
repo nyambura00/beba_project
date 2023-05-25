@@ -94,7 +94,6 @@ class _AgentDashboardState extends State<AgentDashboard> {
             ),
             TripList(
               trips: _trips,
-              showAllTrips: true,
             ),
             const SizedBox(
               height: 15.0,
@@ -108,7 +107,6 @@ class _AgentDashboardState extends State<AgentDashboard> {
                     MaterialPageRoute(
                         builder: (context) => TripList(
                               trips: _trips,
-                              showAllTrips: true,
                             )),
                   );
                 },

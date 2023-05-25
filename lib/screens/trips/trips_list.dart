@@ -1,21 +1,29 @@
 import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TripList extends StatelessWidget {
   final List<Trip> trips;
-  final bool showAllTrips;
 
   const TripList({
     Key? key,
     required this.trips,
-    this.showAllTrips = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Trip> filteredTrips =
-        showAllTrips ? trips : trips.where((trip) => trip.isApproved).toList();
+    final authProvider = Provider.of<AuthProvider>(context);
+    final userType = authProvider.currentUserRole;
+
+    List<Trip> filteredTrips = [];
+
+    if (userType == UserType.agent || userType == UserType.superAdmin) {
+      filteredTrips = trips;
+    } else {
+      filteredTrips = trips.where((trip) => trip.isApproved).toList();
+    }
 
     return ListView.builder(
       shrinkWrap: true,

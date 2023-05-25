@@ -1,5 +1,6 @@
 import 'package:beba_app/model/trip.dart';
 import 'package:beba_app/provider/trips_provider.dart';
+import 'package:beba_app/screens/trips/trip_search_results.dart';
 import 'package:beba_app/screens/trips/trips_list.dart';
 import 'package:beba_app/utils/utils.dart';
 
@@ -37,10 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _trips = trips;
     });
-  }
-
-  void searchTripsHandler(routeQuery, timeQuery) {
-    // TODO: Complete the search function
   }
 
   @override
@@ -131,11 +128,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (routePlaceholder.isNotEmpty &&
                           timePlaceholder.isNotEmpty)
                         {
-                          // searchTripsHandler()
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TripSearchResults(
+                                      searchQuery: routePlaceholder,
+                                      selectedTime: timePlaceholder)))
                         }
                       else
                         {
-                          showSnackBar(context, 'Please select a Trip Route'),
+                          showSnackBar(
+                              context, 'Please select a Trip Route and Time'),
                           showSnackBar(context, 'Error searching for a trip'),
                         }
                     },
