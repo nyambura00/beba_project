@@ -1,8 +1,6 @@
-import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/provider/auth_provider.dart';
-import 'package:beba_app/screens/user_profile.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/background_image.dart';
 import 'package:beba_app/widgets/custom_button.dart';
@@ -152,25 +150,35 @@ class _OtpScreenState extends State<OtpScreen> {
       onSuccess: () {
         ap.checkExistingUser().then((value) async {
           if (value == true) {
-            // user exists in our app
+            // User exists in our app
             ap.getDataFromFireStore().then(
                   (value) => ap.saveUserDataToSP().then(
                         (value) => ap.setSignIn().then(
-                              (value) => Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const HomeScreen(),
-                                  ),
-                                  (route) => false),
-                            ),
+                          (value) {
+                            // Redirect based on user roles
+                            final userRole = ap
+                                .getUserRole(); // Assuming you have a method to retrieve the user's role from the AuthProvider
+                            if (userRole == UserType.driver) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/driverhome', (route) => false);
+                            } else if (userRole == UserType.agent) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/agentdashboard', (route) => false);
+                            } else if (userRole == UserType.superAdmin) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/adminhome', (route) => false);
+                            } else if (userRole == UserType.defaultUser) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/userhome', (route) => false);
+                            }
+                          },
+                        ),
                       ),
                 );
           } else {
-            // new user
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const UserProfile()),
-                (route) => false);
+            // New user can still see trips available in Beba
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/userhome', (route) => false);
           }
         });
       },

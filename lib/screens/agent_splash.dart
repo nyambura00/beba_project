@@ -26,14 +26,21 @@ class _AgentSplashState extends State<AgentSplash> {
             Text(
               'Work with Beba',
               style: TextStyle(
+                decorationStyle: TextDecorationStyle.solid,
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
+              '- Supervise Beba operations(Manamba wa Beba)',
+              style: TextStyle(
+                fontSize: 17,
+              ),
+            ),
+            Text(
               '- Leverage on time. Get everything set.',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 17,
               ),
             ),
             SizedBox(

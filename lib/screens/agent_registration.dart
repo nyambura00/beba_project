@@ -115,8 +115,10 @@ class _AgentRegistrationState extends State<AgentRegistration> {
                   //   // TODO: Handle form submission
                   //   Navigator.pushNamed(context, '/agentdashboard');
                   // }
-                  showSnackBar(context, 'Thank you for the interest');
-                  showSnackBar(context, 'Please await verification');
+                  showSnackBar(context,
+                      'Thank you for your interest in supervising Beba.');
+                  showSnackBar(
+                      context, 'Please await verification notification.');
                   Navigator.pushNamed(context, '/agentdashboard');
                 },
                 child: const Text('Submit'),

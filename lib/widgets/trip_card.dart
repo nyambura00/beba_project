@@ -1,4 +1,4 @@
-import 'package:beba_app/provider/auth_provider.dart';
+import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -20,27 +20,16 @@ class TripCard extends StatefulWidget {
 }
 
 class _TripCardState extends State<TripCard> {
-  void approveTrips(BuildContext context, Trip? trip) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final userType = authProvider.getUserRole();
-
-    final tripsProvider = Provider.of<TripsProvider>(context, listen: false);
-
-    // Check if the user has the authority to approve trips
-    bool canApproveTrip =
-        userType == UserType.agent || userType == UserType.superAdmin;
-
-    if (canApproveTrip) {
-      if (trip != null) {
-        tripsProvider.approveTrip(context, trip!.id);
-        trip.isApproved = true;
-
-        showSnackBar(context, 'Trip has been approved successfully');
-      }
-    } else {
-      // User does not have the authority to approve trips
-      showSnackBar(context, 'Role error: You cannot approve trips.');
-      showSnackBar(context, 'Please contact Beba support.');
+  void handleApproval(String? tripId) async {
+    try {
+      final user = Provider.of<UserModel>(context, listen: false);
+      await Provider.of<TripsProvider>(context, listen: false)
+          .approveTrip(context, tripId, user);
+      showSnackBar(context, 'Trip has been approved successfully');
+    } catch (e) {
+      print(e);
+      showSnackBar(context, 'Error in Trip Approval');
+      showSnackBar(context, 'Are you an agent? Contact Beba support');
     }
   }
 
@@ -110,10 +99,7 @@ class _TripCardState extends State<TripCard> {
                         }
                       : () {
                           try {
-                            // Handle trip approval logic here
-                            approveTrips(context, widget.trip);
-                            showSnackBar(
-                                context, 'Trip has been successfully approved');
+                            handleApproval(widget.trip.id);
                           } catch (e) {
                             // Handle trip approval error
                             print(e);

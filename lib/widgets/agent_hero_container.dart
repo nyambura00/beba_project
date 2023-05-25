@@ -17,7 +17,7 @@ class AgentHeroContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Register to start working with Beba',
+              'Bebana with Beba',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -26,7 +26,7 @@ class AgentHeroContainer extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Click the button below and complete the agent form',
+              'Click the button below to complete the agent form',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,

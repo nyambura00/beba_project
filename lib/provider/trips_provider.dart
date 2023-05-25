@@ -1,8 +1,12 @@
+import 'package:beba_app/model/user_model.dart';
+import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:beba_app/model/trip.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 
 class TripsProvider extends ChangeNotifier {
   // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -60,13 +64,19 @@ class TripsProvider extends ChangeNotifier {
   }
 
   // Approve a trip
-  Future<void> approveTrip(BuildContext context, String? tripId) async {
-    try {
-      await _tripsCollection.doc(tripId).update({'isApproved': true});
-      notifyListeners();
-    } catch (error) {
-      // Handle the error appropriately
-      showSnackBar(context, 'Error approving trip: $error');
+  Future<void> approveTrip(
+      BuildContext context, String? tripId, UserModel user) async {
+    if (user.role == 'SUPER_ADMIN' || user.role == 'AGENT') {
+      try {
+        await _tripsCollection.doc(tripId).update({'isApproved': true});
+        notifyListeners();
+      } catch (error) {
+        // Handle the error appropriately
+        showSnackBar(context, 'Error approving trip: $error');
+      }
+    } else {
+      showSnackBar(context, 'Role error: You cannot approve trips.');
+      showSnackBar(context, 'Please contact Beba support.');
     }
   }
 
