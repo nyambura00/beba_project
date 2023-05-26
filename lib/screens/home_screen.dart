@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late TripsProvider _tripsService;
   List<Trip> _trips = [];
+  List<String> _routeOptions = [];
 
   @override
   void initState() {
@@ -35,8 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _initTrips() async {
     final trips = await _tripsService.fetchTrips(context);
+    final routeOptions = trips.map((trip) => trip.route).toList();
     setState(() {
       _trips = trips;
+      _routeOptions = routeOptions;
     });
   }
 
@@ -60,9 +63,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Twende wapi?',
                 style: TextStyle(
                     fontFamily: 'SpaceMono',
-                    fontSize: 30.0,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.normal),
               ),
+            ),
+            const SizedBox(
+              height: 2.0,
+            ),
+            const Text(
+              '- Search for active trips',
+              style: TextStyle(
+                  fontFamily: 'SpaceMono',
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.normal),
+            ),
+            const SizedBox(
+              height: 5.0,
             ),
             Container(
               decoration: BoxDecoration(
@@ -98,8 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onSelectOption: (String placeholder) {
                           routePlaceholder = placeholder;
                         },
-                        options: List<String>.from(
-                            _trips.map((trip) => trip.route).toList()),
+                        options: _routeOptions,
                       ),
                     ],
                   ),
