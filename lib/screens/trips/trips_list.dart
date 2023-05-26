@@ -14,7 +14,7 @@ class TripList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final userType = authProvider.currentUserRole;
 
     List<Trip> filteredTrips = [];

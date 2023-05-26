@@ -1,49 +1,52 @@
+import 'package:beba_app/model/user_model.dart';
 import 'package:uuid/uuid.dart';
 
-class Driver {
-  String? id;
-  String fullName;
+class Driver extends UserModel {
+  String? driverId;
   String idNumber;
   String licenseNumber;
   String plateNumber;
   String ntsaNumber;
   String imageAddress;
   String route;
-  late String createdAt;
-  String userId;
+  late String driverCreatedAt;
 
   Driver({
-    this.id,
-    required this.fullName,
+    required this.driverId,
     required this.idNumber,
     required this.licenseNumber,
     required this.plateNumber,
     required this.ntsaNumber,
     required this.imageAddress,
     required this.route,
-    required this.userId,
-  }) {
-    createdAt = DateTime.now().toString(); // generate createdAt attribute
-    id = const Uuid().v4();
+  }) : super(
+            uid: '',
+            fullName: '',
+            bio: '',
+            profilePic: '',
+            phoneNumber: '',
+            createdAt: '',
+            role: 'DRIVER') {
+    driverCreatedAt = DateTime.now().toString(); // generate createdAt attribute
+    driverId = const Uuid().v4();
   }
 
   factory Driver.fromMap(Map<String, dynamic> map) {
     return Driver(
-      id: map['id'] ?? '',
-      fullName: map['fullName'] ?? '',
+      driverId: map['id'] ?? '',
       idNumber: map['idNumber'] ?? '',
       licenseNumber: map['licenseNumber'] ?? '',
       plateNumber: map['plateNumber'] ?? '',
       ntsaNumber: map['ntsaNumber'] ?? '',
       imageAddress: map['imageAddress'] ?? '',
       route: map['route'] ?? '',
-      userId: map['userId'] ?? '',
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'driverId': driverId,
       'fullName': fullName,
       'idNumber': idNumber,
       'licenseNumber': licenseNumber,
@@ -52,12 +55,11 @@ class Driver {
       'imageAddress': imageAddress,
       'route': route,
       'createdAt': createdAt,
-      'userId': userId,
     };
   }
 
   @override
   String toString() {
-    return 'Driver{ id: $id, fullName: $fullName, idNumber: $idNumber, licenseNumber: $licenseNumber, plateNumber: $plateNumber, ntsaNumber: $ntsaNumber, imageAddress: $imageAddress, route: $route, createdAt: $createdAt, userId: $userId}';
+    return 'Driver{ driverId: $driverId, fullName: $fullName, idNumber: $idNumber, licenseNumber: $licenseNumber, plateNumber: $plateNumber, ntsaNumber: $ntsaNumber, imageAddress: $imageAddress, route: $route, createdAt: $createdAt}';
   }
 }

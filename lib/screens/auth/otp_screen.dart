@@ -157,7 +157,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           (value) {
                             // Redirect based on user roles
                             final userRole = ap
-                                .getUserRole(); // Assuming you have a method to retrieve the user's role from the AuthProvider
+                                .getUserRole();
                             if (userRole == UserType.driver) {
                               Navigator.pushNamedAndRemoveUntil(
                                   context, '/driverhome', (route) => false);

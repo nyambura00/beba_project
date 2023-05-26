@@ -53,12 +53,39 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void signInWithPhone(BuildContext context, String phoneNumber) async {
+    String userRouteName = ModalRoute.of(context)?.settings.name ?? '';
     try {
       await _firebaseAuth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
           verificationCompleted:
               (PhoneAuthCredential phoneAuthCredential) async {
             await _firebaseAuth.signInWithCredential(phoneAuthCredential);
+
+            // Get the user's role based on the sign-in screen
+            String role = '';
+            String? routeName = userRouteName;
+
+            switch (routeName) {
+              case '/signin/superadmin':
+                role = 'SUPER_ADMIN';
+                break;
+              case '/signin/agent':
+                role = 'AGENT';
+                break;
+              case '/signin/driver':
+                role = 'DRIVER';
+                break;
+              case '/signin':
+                role = 'DEFAULT_USER';
+                break;
+              default:
+                role = 'DEFAULT_USER';
+            }
+
+            assignUserRole(
+              _firebaseAuth.currentUser?.uid ?? '',
+              role,
+            );
           },
           verificationFailed: (error) {
             throw Exception(error.message);
@@ -77,6 +104,17 @@ class AuthProvider extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message.toString());
     }
+  }
+
+  void assignUserRole(String userId, String role) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .set({'role': role}, SetOptions(merge: true)).then((value) {
+      print('User role assigned successfully');
+    }).catchError((error) {
+      print('Failed to assign user role: $error');
+    });
   }
 
   //verify otp
@@ -174,7 +212,7 @@ class AuthProvider extends ChangeNotifier {
         createdAt: snapshot['createdAt'],
         phoneNumber: snapshot['phoneNumber'],
         uid: snapshot['uid'],
-        name: snapshot['name'],
+        fullName: snapshot['fullName'],
         role: snapshot['role'],
       );
       _uid = userModel.uid;
@@ -226,6 +264,8 @@ class AuthProvider extends ChangeNotifier {
           return UserType.agent;
         case 'DRIVER':
           return UserType.driver;
+        case 'DEGAULT_USER':
+          return UserType.defaultUser;
         default:
           return UserType.defaultUser;
       }

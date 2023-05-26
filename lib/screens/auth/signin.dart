@@ -150,7 +150,7 @@ class SigninScreenState extends State<SigninScreen> {
                       height: 50,
                       child: CustomButton(
                         text: "Enter",
-                        onPressed: () => sendPhoneNumber(),
+                        onPressed: () => sendPhoneNumber(context),
                       ),
                     ),
                   ],
@@ -163,7 +163,7 @@ class SigninScreenState extends State<SigninScreen> {
     );
   }
 
-  void sendPhoneNumber() {
+  void sendPhoneNumber(BuildContext context) {
     final ap = Provider.of<AuthProvider>(context, listen: false);
     String phoneNumber = phoneController.text.trim();
     ap.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");

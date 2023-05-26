@@ -56,4 +56,8 @@ class Trip {
   String toString() {
     return 'Trip{id: $id, source: $source, destination: $destination, unitFare: $unitFare, vehicleId: $vehicleId, startTime: $startTime, driverId: $driverId, createdAt: $createdAt, isApproved: $isApproved}';
   }
+
+  String get route {
+    return '$source-$destination';
+  }
 }

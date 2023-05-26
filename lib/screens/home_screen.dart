@@ -98,7 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         onSelectOption: (String placeholder) {
                           routePlaceholder = placeholder;
                         },
-                        options: const [],
+                        options: List<String>.from(
+                            _trips.map((trip) => trip.route).toList()),
                       ),
                     ],
                   ),

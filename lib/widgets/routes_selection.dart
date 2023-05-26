@@ -1,5 +1,5 @@
-import 'package:beba_app/model/driver_model.dart';
 import 'package:beba_app/provider/auth_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,49 +18,84 @@ class RoutesSelection extends StatefulWidget {
 }
 
 class _RoutesSelectionState extends State<RoutesSelection> {
-  String _selectedOption = 'NRB-ELD';
+  String? _selectedOption;
 
   bool get isDriver {
     final currentUserType = Provider.of<AuthProvider>(context).currentUserRole;
     return currentUserType == UserType.driver;
   }
 
-  String get _driverRegisteredRoute {
-    final registeredRoute = Provider.of<Driver>(context).route;
-    return registeredRoute;
+  Future<String?> _driverRegisteredRoute() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final userRole = authProvider.currentUserRole;
+
+    if (userRole == UserType.driver) {
+      final currentUserUid = authProvider.uid;
+      final firestore = FirebaseFirestore.instance;
+
+      try {
+        final driverSnapshot =
+            await firestore.collection('drivers').doc(currentUserUid).get();
+        if (driverSnapshot.exists) {
+          final driverData = driverSnapshot.data();
+          final route = driverData!['route'] as String?;
+          return route;
+        }
+      } catch (error) {
+        // Handle any errors that occur during the Firestore operation
+        print('Error retrieving driver data: $error');
+      }
+    }
+
+    return null;
   }
 
   @override
   void initState() {
     super.initState();
+    _loadInitialRoute();
+  }
+
+  Future<void> _loadInitialRoute() async {
+    final driverRoute = await _driverRegisteredRoute();
+    setState(() {
+      _selectedOption =
+          isDriver ? driverRoute : widget.options?.first ?? 'NRB-ELD';
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: isDriver ? _driverRegisteredRoute : _selectedOption,
-      // Drivers can only bid for trip routes that are registered during application
-      onChanged: isDriver
-          ? null
-          : (String? selectedOption) {
-              setState(() {
-                _selectedOption = selectedOption!;
-                widget.onSelectOption(_selectedOption);
-              });
-            },
-      items: <String>[
-        'NRB-ELD',
-        'NRB-GILGIL',
-        'NRB-MSA',
-        'NRB-MERU',
-        'NRB-NYERI',
-        'NRB-EMBU',
-      ].map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
+    return FutureBuilder<String?>(
+      future: _driverRegisteredRoute(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          final driverRoute = snapshot.data;
+          return DropdownButton<String>(
+            value: isDriver ? driverRoute : _selectedOption,
+            // Drivers can only bid for trip routes that are registered during application
+            onChanged: isDriver
+                ? null
+                : (String? selectedOption) {
+                    setState(() {
+                      _selectedOption = selectedOption!;
+                      widget.onSelectOption(_selectedOption!);
+                    });
+                  },
+            items:
+                widget.options!.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          );
+        }
+      },
     );
   }
 }

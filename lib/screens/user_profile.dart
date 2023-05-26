@@ -181,7 +181,7 @@ class _UserProfileState extends State<UserProfile> {
         profilePic: "",
         createdAt: "",
         uid: "",
-        name: nameController.text.trim(),
+        fullName: nameController.text.trim(),
         phoneNumber: phoneNumberController.text.trim(),
         role: "");
     if (image != null) {
