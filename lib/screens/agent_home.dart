@@ -15,7 +15,7 @@ class AgentDashboard extends StatefulWidget {
 
 class _AgentDashboardState extends State<AgentDashboard> {
   late TripsProvider _tripsService;
-  List<Trip> _trips = [];
+  List<TripModel> _trips = [];
 
   @override
   void initState() {

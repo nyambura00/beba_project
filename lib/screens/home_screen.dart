@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   AppbarWidget appBarWidget = const AppbarWidget();
 
   late TripsProvider _tripsService;
-  List<Trip> _trips = [];
+  List<TripModel> _trips = [];
   List<String> _routeOptions = [];
 
   @override

@@ -6,7 +6,7 @@ import 'package:beba_app/model/trip.dart';
 import 'package:provider/provider.dart';
 
 class TripCard extends StatefulWidget {
-  final Trip trip;
+  final TripModel trip;
   final bool isApproved;
 
   const TripCard({

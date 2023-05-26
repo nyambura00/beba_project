@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:beba_app/model/trip.dart';
 
 class BookTripScreen extends StatefulWidget {
-  final Trip trip;
+  final TripModel trip;
 
   const BookTripScreen({Key? key, required this.trip}) : super(key: key);
 

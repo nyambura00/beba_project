@@ -1,17 +1,17 @@
 import 'package:uuid/uuid.dart';
 
-class Trip {
+class TripModel {
   String? id;
   final String source;
   final String destination;
-  final int unitFare;
-  final int vehicleId;
+  final String unitFare;
+  final String vehicleId;
   final String startTime;
   final String driverId;
-  late String createdAt;
+  late DateTime createdAt;
   bool isApproved;
 
-  Trip({
+  TripModel({
     this.id,
     required this.source,
     required this.destination,
@@ -21,7 +21,7 @@ class Trip {
     required this.driverId,
     this.isApproved = false,
   }) {
-    createdAt = DateTime.now().toString();
+    createdAt = DateTime.now();
     id = const Uuid().v4();
   }
 
@@ -39,8 +39,8 @@ class Trip {
     };
   }
 
-  static Trip fromMap(Map<String, dynamic> map, String id) {
-    return Trip(
+  static TripModel fromMap(Map<String, dynamic> map, String id) {
+    return TripModel(
       id: map['id'],
       source: map['source'],
       destination: map['destination'],

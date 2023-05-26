@@ -48,13 +48,13 @@ class MyApp extends StatelessWidget {
     final trips = await tripsService.fetchTrips(context);
     if (trips.isEmpty) {
       // Create the Genesis Trip
-      final genesisTrip = Trip(
+      final genesisTrip = TripModel(
         source: 'NRB',
         destination: 'ELD',
-        unitFare: 1000,
-        vehicleId: 12233455,
-        startTime: DateTime.now().toString(),
-        driverId: 'OXDriver1',
+        unitFare: '1000',
+        vehicleId: '1',
+        startTime: '8:00 AM',
+        driverId: '0xDriver1',
       );
       tripsService.createTrip(genesisTrip);
     }
@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
           '/accountsettings': (context) => const AccountSettingsScreen(),
           '/userprofile': (context) => const UserProfile(),
           '/booktrip': (context) => BookTripScreen(
-                trip: ModalRoute.of(context)?.settings.arguments as Trip,
+                trip: ModalRoute.of(context)?.settings.arguments as TripModel,
               ),
           '/contact': (context) => const ContactUsScreen(),
           '/notifications': (context) => const NotificationsScreen(),

@@ -18,7 +18,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
   late int tripsCount = 7; // TODO: Implement trips_count function
 
   late TripsProvider _tripsService;
-  List<Trip> _trips = [];
+  List<TripModel> _trips = [];
 
   @override
   void initState() {

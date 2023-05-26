@@ -11,35 +11,35 @@ class TripsProvider extends ChangeNotifier {
       FirebaseFirestore.instance.collection('trips');
 
   // Create a new trip
-  Future<void> createTrip(Trip trip) async {
+  Future<void> createTrip(TripModel trip) async {
     try {
       await _tripsCollection.add(trip.toMap());
       notifyListeners();
     } catch (error) {
       // Handle the error appropriately
       print(error);
-      // showSnackBar('Error creating trip: $error');
+      // showSnackBar('Error creating trip');
     }
   }
 
   // Get all trips
-  Future<List<Trip>> fetchTrips(BuildContext context) async {
+  Future<List<TripModel>> fetchTrips(BuildContext context) async {
     try {
       final trips = await _tripsCollection
           .where('isApproved', whereIn: [true, false]).get();
       return trips.docs
-          .map(
-              (doc) => Trip.fromMap(doc.data() as Map<String, dynamic>, doc.id))
+          .map((doc) =>
+              TripModel.fromMap(doc.data() as Map<String, dynamic>, doc.id))
           .toList();
     } catch (e) {
       print(e);
-      showSnackBar(context, 'Error fetching Trips from db');
+      showSnackBar(context, 'Error fetching Trips from db $e');
       return [];
     }
   }
 
   // Update an existing trip
-  Future<void> updateTrip(BuildContext context, Trip trip) async {
+  Future<void> updateTrip(BuildContext context, TripModel trip) async {
     try {
       await _tripsCollection.doc(trip.id).update(trip.toMap());
       notifyListeners();
@@ -89,7 +89,7 @@ class TripsProvider extends ChangeNotifier {
   }
 
   // Search trips based on criteria
-  Stream<List<Trip>> searchTrips(String searchQuery, String selectedTime) {
+  Stream<List<TripModel>> searchTrips(String searchQuery, String selectedTime) {
     return _tripsCollection
         .where('destination', isGreaterThanOrEqualTo: searchQuery)
         .where('destination', isLessThan: '$searchQuery\uf8ff')
@@ -97,8 +97,8 @@ class TripsProvider extends ChangeNotifier {
         .snapshots()
         .map((snapshot) {
       return snapshot.docs
-          .map(
-              (doc) => Trip.fromMap(doc.data() as Map<String, dynamic>, doc.id))
+          .map((doc) =>
+              TripModel.fromMap(doc.data() as Map<String, dynamic>, doc.id))
           .toList();
     });
   }

@@ -17,7 +17,7 @@ class TripSearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tripsProvider = Provider.of<TripsProvider>(context);
-    return StreamBuilder<List<Trip>>(
+    return StreamBuilder<List<TripModel>>(
       stream: tripsProvider.searchTrips(searchQuery, selectedTime),
       builder: (context, snapshot) {
         if (snapshot.hasData) {

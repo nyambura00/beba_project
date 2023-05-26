@@ -14,7 +14,7 @@ class TripConfirmation extends StatefulWidget {
 
 class _TripConfirmationState extends State<TripConfirmation> {
   late TripsProvider _tripsService;
-  List<Trip> _trips = [];
+  List<TripModel> _trips = [];
 
   @override
   void initState() {
