@@ -89,13 +89,13 @@ class _TripCardState extends State<TripCard> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        widget.isApproved ? Colors.black : Colors.red,
+                        widget.trip.isApproved ? Colors.black : Colors.red,
                     foregroundColor: Colors.white,
                   ),
-                  onPressed: widget.isApproved
+                  onPressed: widget.trip.isApproved
                       ? () {
                           Navigator.pushNamed(context, '/tripunit',
-                              arguments: widget.trip);
+                              arguments: widget.trip.id);
                         }
                       : () {
                           try {
@@ -106,7 +106,8 @@ class _TripCardState extends State<TripCard> {
                             showSnackBar(context, 'Error in Trip Approval');
                           }
                         },
-                  child: Text(widget.isApproved ? 'Book Trip' : 'Approve Trip'),
+                  child: Text(
+                      widget.trip.isApproved ? 'Book Trip' : 'Approve Trip'),
                 ),
               ],
             ),
