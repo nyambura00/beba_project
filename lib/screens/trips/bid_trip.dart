@@ -25,7 +25,8 @@ class _BidTripScreenState extends State<BidTripScreen> {
   late String userRoute = '';
 
   bool get isDriver {
-    final currentUserType = Provider.of<AuthProvider>(context).currentUserRole;
+    final currentUserType =
+        Provider.of<AuthProvider>(context, listen: false).currentUserRole;
     return currentUserType == UserType.driver;
   }
 
@@ -42,7 +43,8 @@ class _BidTripScreenState extends State<BidTripScreen> {
 
   Future<String> getDriverRoute() async {
     try {
-      final userSelectedRoute = Provider.of<Driver>(context).route;
+      final userSelectedRoute =
+          Provider.of<Driver>(context, listen: false).route;
       driverRoute = userSelectedRoute;
       return driverRoute;
     } catch (e) {
@@ -50,6 +52,21 @@ class _BidTripScreenState extends State<BidTripScreen> {
       Navigator.pushNamedAndRemoveUntil(
           context, '/driverification', (route) => false);
       rethrow;
+    }
+  }
+
+  void submitBid() {
+    if (isDriver) {
+      showSnackBar(
+        context,
+        //TODO: Render bids in the form of trip cards to agents for approval
+        'Bid submitted successfully. Please await approval.',
+      );
+    } else {
+      showSnackBar(
+        context,
+        'Only registered drivers can bid on trips.',
+      );
     }
   }
 
@@ -142,13 +159,7 @@ class _BidTripScreenState extends State<BidTripScreen> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () => {
-                      showSnackBar(
-                          context,
-                          //TODO: Render bids in form of trip cards to agents for approval
-                          'Bid submitted successfully. Please await approval.'),
-                      // Navigator.pushNamed(context, '/tripconfirmation'),
-                    },
+                    onPressed: submitBid,
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.red,
