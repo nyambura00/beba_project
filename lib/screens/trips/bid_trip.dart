@@ -69,21 +69,22 @@ class _BidTripScreenState extends State<BidTripScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Text(
-                    'Bid on a New Trip',
+                    'Bid Trip',
                     style: TextStyle(
                       fontFamily: 'SpaceMono',
-                      fontSize: 20.0,
+                      fontSize: 30.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const Text(
-                    '- Check for a slot from Beba :)',
+                    '- Check out for a slot from Beba :)',
                     style: TextStyle(
                       fontFamily: 'SpaceMono',
-                      fontSize: 15.0,
+                      fontSize: 20.0,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
+                  const Divider(),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -91,7 +92,8 @@ class _BidTripScreenState extends State<BidTripScreen> {
                     children: [
                       const Text(
                         'Registered Route: ',
-                        style: TextStyle(fontFamily: 'SpaceMono'),
+                        style:
+                            TextStyle(fontFamily: 'SpaceMono', fontSize: 20.0),
                       ),
                       RoutesSelection(
                         options: isDriver ? null : const [],
@@ -133,16 +135,19 @@ class _BidTripScreenState extends State<BidTripScreen> {
                     children: [
                       Text(
                         'Pick time: ',
-                        style: TextStyle(fontFamily: 'SpaceMono'),
+                        style:
+                            TextStyle(fontFamily: 'SpaceMono', fontSize: 20.0),
                       ),
                       TimeSelection(),
                     ],
                   ),
                   ElevatedButton(
                     onPressed: () => {
-                      showSnackBar(context,
+                      showSnackBar(
+                          context,
+                          //TODO: Render bids in form of trip cards to agents for approval
                           'Bid submitted successfully. Please await approval.'),
-                      Navigator.pushNamed(context, '/tripconfirmation'),
+                      // Navigator.pushNamed(context, '/tripconfirmation'),
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
