@@ -1,9 +1,9 @@
-import 'package:beba_app/provider/trips_provider.dart';
+// import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/trips/trips_list.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:beba_app/model/trip.dart';
+// import 'package:beba_app/model/trip_model.dart';
 import 'package:widget_circular_animator/widget_circular_animator.dart';
 
 class AgentDashboard extends StatefulWidget {
@@ -14,22 +14,22 @@ class AgentDashboard extends StatefulWidget {
 }
 
 class _AgentDashboardState extends State<AgentDashboard> {
-  late TripsProvider _tripsService;
-  List<TripModel> _trips = [];
+  // late TripsProvider _tripsService;
+  // List<TripModel> _trips = [];
 
   @override
   void initState() {
     super.initState();
-    _tripsService = TripsProvider();
-    _initTrips();
+    // _tripsService = TripsProvider();
+    // _initTrips();
   }
 
-  void _initTrips() async {
-    final trips = await _tripsService.fetchTrips(context);
-    setState(() {
-      _trips = trips;
-    });
-  }
+  // void _initTrips() async {
+  //   final trips = await _tripsService.fetchTrips(context);
+  //   setState(() {
+  //     _trips = trips;
+  //   });
+  // }
 
   var tripsCount = 4;
 
@@ -92,9 +92,7 @@ class _AgentDashboardState extends State<AgentDashboard> {
             const SizedBox(
               height: 10.0,
             ),
-            TripList(
-              trips: _trips,
-            ),
+            const TripList(),
             const SizedBox(
               height: 15.0,
             ),
@@ -104,10 +102,7 @@ class _AgentDashboardState extends State<AgentDashboard> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => TripList(
-                              trips: _trips,
-                            )),
+                    MaterialPageRoute(builder: (context) => const TripList()),
                   );
                 },
                 child: const Text(

@@ -1,4 +1,4 @@
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/trips/trips_list.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
@@ -113,7 +113,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            TripList(trips: _trips),
+            const TripList(),
           ],
         ),
       ),

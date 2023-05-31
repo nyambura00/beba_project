@@ -1,4 +1,4 @@
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/trips/trip_search_results.dart';
 import 'package:beba_app/screens/trips/trips_list.dart';
@@ -198,17 +198,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: 'SpaceMono', fontSize: 20.0, color: Colors.red),
               ),
             ),
-            TripList(trips: _trips),
+            const TripList(),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => TripList(
-                              trips: _trips,
-                            )),
+                    MaterialPageRoute(builder: (context) => const TripList()),
                   );
                 },
                 child: const Text(

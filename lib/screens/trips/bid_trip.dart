@@ -1,4 +1,3 @@
-import 'package:beba_app/model/driver_model.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/app_bar.dart';
@@ -34,26 +33,26 @@ class _BidTripScreenState extends State<BidTripScreen> {
   void initState() {
     super.initState();
     // Retrieve the driver's route value from the database
-    getDriverRoute().then((value) {
-      setState(() {
-        driverRoute = value;
-      });
-    });
+    // getDriverRoute().then((value) {
+    //   setState(() {
+    //     driverRoute = value;
+    //   });
+    // });
   }
 
-  Future<String> getDriverRoute() async {
-    try {
-      final userSelectedRoute =
-          Provider.of<Driver>(context, listen: false).route;
-      driverRoute = userSelectedRoute;
-      return driverRoute;
-    } catch (e) {
-      showSnackBar(context, 'Only drivers can bid on trips');
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/driverification', (route) => false);
-      rethrow;
-    }
-  }
+  // Future<String> getDriverRoute() async {
+  //   try {
+  //     final userSelectedRoute =
+  //         Provider.of<Driver>(context, listen: false).route;
+  //     driverRoute = userSelectedRoute;
+  //     return driverRoute;
+  //   } catch (e) {
+  //     showSnackBar(context, 'Only drivers can bid on trips');
+  //     Navigator.pushNamedAndRemoveUntil(
+  //         context, '/driverification', (route) => false);
+  //     rethrow;
+  //   }
+  // }
 
   void submitBid() {
     if (isDriver) {

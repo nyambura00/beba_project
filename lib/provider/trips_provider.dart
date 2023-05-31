@@ -3,7 +3,7 @@ import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 
 class TripsProvider extends ChangeNotifier {
   // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -18,7 +18,6 @@ class TripsProvider extends ChangeNotifier {
     } catch (error) {
       // Handle the error appropriately
       print(error);
-      // showSnackBar('Error creating trip');
     }
   }
 

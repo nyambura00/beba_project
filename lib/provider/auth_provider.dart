@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/screens/auth/otp_screen.dart';
 import 'package:beba_app/utils/utils.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum UserType {
@@ -61,31 +62,78 @@ class AuthProvider extends ChangeNotifier {
               (PhoneAuthCredential phoneAuthCredential) async {
             await _firebaseAuth.signInWithCredential(phoneAuthCredential);
 
-            // Get the user's role based on the sign-in screen
-            String role = '';
-            String? routeName = userRouteName;
+            //Get user's ID
+            final uid = _firebaseAuth.currentUser?.uid;
+            try {
+              if (uid == null) {
+                // if id is null, assign user role respectively
+                String role = '';
+                String? routeName = userRouteName;
 
-            switch (routeName) {
-              case '/signin/superadmin':
-                role = 'SUPER_ADMIN';
-                break;
-              case '/signin/agent':
-                role = 'AGENT';
-                break;
-              case '/signin/driver':
-                role = 'DRIVER';
-                break;
-              case '/signin':
-                role = 'DEFAULT_USER';
-                break;
-              default:
-                role = 'DEFAULT_USER';
+                switch (routeName) {
+                  case '/signin/superadmin':
+                    role = 'SUPER_ADMIN';
+                    break;
+                  case '/signin/agent':
+                    role = 'AGENT';
+                    break;
+                  case '/signin/driver':
+                    role = 'DRIVER';
+                    break;
+                  case '/signin':
+                    role = 'DEFAULT_USER';
+                    break;
+                  default:
+                    role = 'DEFAULT_USER';
+                }
+
+                assignUserRole(
+                  _firebaseAuth.currentUser!.uid,
+                  role,
+                );
+
+                // UserType userType = getUserRoleFromRoleString(role);
+
+                setSignIn();
+                // Set user sign-in status
+              } else {
+                // Fetch user claims from the user's ID token
+                final idTokenResult =
+                    await _firebaseAuth.currentUser?.getIdTokenResult();
+
+                // Access the custom claims from the user's ID token
+                final customClaims = idTokenResult?.claims;
+
+                // Check if the custom claims contain a 'role' claim
+                if (customClaims != null && customClaims.containsKey('role')) {
+                  // Retrieve the user role from the custom claims
+                  final userRole = customClaims['role'];
+
+                  switch (userRole) {
+                    case 'SUPER_ADMIN':
+                      Navigator.pushNamed(context, '/superadmin');
+                      break;
+                    case 'AGENT':
+                      Navigator.pushNamed(context, '/agentdashboard');
+                      break;
+                    case 'DRIVER':
+                      Navigator.pushNamed(context, '/driverhome');
+                      break;
+                    case 'DEFAULT_USER':
+                      Navigator.pushNamed(context, '/userhome');
+                      break;
+                    default:
+                      Navigator.pushNamed(context, '/userhome');
+                  }
+
+                  setSignIn();
+                }
+              }
+            } catch (e) {
+              print(e);
+              showSnackBar(
+                  context, 'Error accessing the authenticated user ID');
             }
-
-            assignUserRole(
-              _firebaseAuth.currentUser?.uid ?? '',
-              role,
-            );
           },
           verificationFailed: (error) {
             throw Exception(error.message);
@@ -103,6 +151,8 @@ class AuthProvider extends ChangeNotifier {
           codeAutoRetrievalTimeout: (verificationId) {});
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message.toString());
+    } catch (e) {
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -115,6 +165,48 @@ class AuthProvider extends ChangeNotifier {
     }).catchError((error) {
       print('Failed to assign user role: $error');
     });
+  }
+
+  UserType getUserRoleFromRoleString(String role) {
+    switch (role) {
+      case 'SUPER_ADMIN':
+        return UserType.superAdmin;
+      case 'AGENT':
+        return UserType.agent;
+      case 'DRIVER':
+        return UserType.driver;
+      case 'DEFAULT_USER':
+        return UserType.defaultUser;
+      default:
+        return UserType.defaultUser;
+    }
+  }
+
+  UserType getUserRole(BuildContext context) {
+    if (_firebaseAuth.currentUser != null) {
+      // Access the user's role from your user data
+      String userRole =
+          _userModel?.role ?? ''; // Update with the actual user role field
+
+      if (userRole.isNotEmpty) {
+        // Map the user role string to the corresponding UserType enum value
+        return getUserRoleFromRoleString(userRole);
+      } else {
+        print('User role not available');
+        showSnackBar(context, 'User role not available');
+      }
+    } else {
+      print('There is no user');
+      showSnackBar(context, 'Please Sign In');
+    }
+
+    return UserType
+        .defaultUser; // Return a default role if the user role is not available
+  }
+
+  void setUserRole(UserType userType) {
+    _currentUserRole = userType;
+    notifyListeners();
   }
 
   //verify otp
@@ -166,15 +258,14 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
     try {
       // Set the initial user role
-      UserType userRole = getUserRole();
-      Provider.of<AuthProvider>(context, listen: false).setUserRole(userRole);
+      setUserRole(userType);
 
       await storeFileToStorage("profilePic/$_uid", profilePic).then((value) {
         userModel.profilePic = value;
-        userModel.createdAt = DateTime.now().millisecondsSinceEpoch.toString();
+        userModel.createdAt = DateTime.now();
         userModel.phoneNumber = _firebaseAuth.currentUser!.phoneNumber!;
-        userModel.uid = _firebaseAuth.currentUser!.phoneNumber!;
-        userModel.role = getUserRole().toString();
+        userModel.uid = _uid!;
+        userModel.role = getUserRole(context).toString();
       });
       _userModel = userModel;
 
@@ -209,7 +300,6 @@ class AuthProvider extends ChangeNotifier {
       _userModel = UserModel(
         bio: snapshot['bio'],
         profilePic: snapshot['profilePic'],
-        createdAt: snapshot['createdAt'],
         phoneNumber: snapshot['phoneNumber'],
         uid: snapshot['uid'],
         fullName: snapshot['fullName'],
@@ -242,35 +332,6 @@ class AuthProvider extends ChangeNotifier {
       Navigator.pushNamedAndRemoveUntil(context, "/signin", (route) => false);
     } catch (e) {
       print(e);
-    }
-  }
-
-  void setUserRole(UserType userType) {
-    _currentUserRole = userType;
-    notifyListeners();
-  }
-
-  UserType getUserRole() {
-    if (_firebaseAuth.currentUser != null) {
-      // Access the user's role from your user data
-      String userRole =
-          _userModel?.role ?? ''; // Update with the actual user role field
-
-      // Map the user role string to the corresponding UserType enum value
-      switch (userRole) {
-        case 'SUPER_ADMIN':
-          return UserType.superAdmin;
-        case 'AGENT':
-          return UserType.agent;
-        case 'DRIVER':
-          return UserType.driver;
-        case 'DEGAULT_USER':
-          return UserType.defaultUser;
-        default:
-          return UserType.defaultUser;
-      }
-    } else {
-      return UserType.defaultUser;
     }
   }
 }

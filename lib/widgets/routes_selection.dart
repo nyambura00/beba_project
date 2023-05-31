@@ -21,7 +21,8 @@ class _RoutesSelectionState extends State<RoutesSelection> {
   String? _selectedOption;
 
   bool get isDriver {
-    final currentUserType = Provider.of<AuthProvider>(context).currentUserRole;
+    final currentUserType =
+        Provider.of<AuthProvider>(context, listen: false).currentUserRole;
     return currentUserType == UserType.driver;
   }
 

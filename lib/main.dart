@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/screens/account_settings.dart';
@@ -10,6 +10,7 @@ import 'package:beba_app/screens/agent_splash.dart';
 import 'package:beba_app/screens/auth/authgate.dart';
 import 'package:beba_app/screens/auth/logout.dart';
 import 'package:beba_app/screens/auth/signin.dart';
+import 'package:beba_app/screens/auth/signin_agent.dart';
 import 'package:beba_app/screens/contact_us.dart';
 import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/driver_splash.dart';
@@ -17,12 +18,12 @@ import 'package:beba_app/screens/driver_verification.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/notifications.dart';
 import 'package:beba_app/screens/splash.dart';
+import 'package:beba_app/screens/super_admin.dart';
 import 'package:beba_app/screens/trips/agent_trips_confirm.dart';
 import 'package:beba_app/screens/trips/bid_trip.dart';
 import 'package:beba_app/screens/trips/book_trip.dart';
 import 'package:beba_app/screens/trips/unit_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
-// import 'package:beba_app/services/trips.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +61,6 @@ class MyApp extends StatelessWidget {
     }
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -114,6 +114,8 @@ class MyApp extends StatelessWidget {
           '/agentsplash': (context) => const AgentSplash(),
           '/agentregistration': (context) => const AgentRegistration(),
           '/agentdashboard': (context) => const AgentDashboard(),
+          '/signin/agent': (context) => const AgentSignIn(),
+          '/superadmin': (context) => const SuperAdminScreen(),
         },
       ),
     );
@@ -132,10 +134,7 @@ class _LandingPageState extends State<LandingPage> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(
-        context,
-        '/authgate',
-      );
+      Navigator.pushNamed(context, '/authgate');
     });
   }
 

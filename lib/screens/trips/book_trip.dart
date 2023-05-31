@@ -1,7 +1,7 @@
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 
 class BookTripScreen extends StatefulWidget {
   final TripModel trip;

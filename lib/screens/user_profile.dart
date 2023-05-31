@@ -179,7 +179,6 @@ class _UserProfileState extends State<UserProfile> {
     UserModel userModel = UserModel(
         bio: bioController.text.trim(),
         profilePic: "",
-        createdAt: "",
         uid: "",
         fullName: nameController.text.trim(),
         phoneNumber: phoneNumberController.text.trim(),

@@ -2,7 +2,7 @@ import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/provider/trips_provider.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 import 'package:provider/provider.dart';
 
 class TripCard extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:beba_app/screens/trips/trips_list.dart';
 import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:beba_app/model/trip.dart';
+import 'package:beba_app/model/trip_model.dart';
 
 class TripConfirmation extends StatefulWidget {
   const TripConfirmation({super.key});
@@ -32,22 +32,22 @@ class _TripConfirmationState extends State<TripConfirmation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppbarWidget(),
+    return const Scaffold(
+      appBar: AppbarWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const SizedBox(
+            SizedBox(
               height: 10.0,
             ),
-            const Text(
+            Text(
               'Trips of the Day',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 25,
               ),
             ),
-            const Text(
+            Text(
               '- Approve/Decline trips of the day',
               style: TextStyle(
                 fontFamily: 'SpaceMono',
@@ -55,16 +55,14 @@ class _TripConfirmationState extends State<TripConfirmation> {
                 fontWeight: FontWeight.normal,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 20.0,
             ),
-            TripList(
-              trips: _trips,
-            ),
+            TripList(),
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
