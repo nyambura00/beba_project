@@ -2,18 +2,17 @@ import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/provider/auth_provider.dart';
-// import 'package:beba_app/widgets/background_image.dart';
 import 'package:beba_app/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
-class AgentSignIn extends StatefulWidget {
-  const AgentSignIn({super.key});
+class AgentSignin extends StatefulWidget {
+  const AgentSignin({super.key});
 
   @override
-  State<AgentSignIn> createState() => AgentSignInState();
+  State<AgentSignin> createState() => AgentSigninState();
 }
 
-class AgentSignInState extends State<AgentSignIn> {
+class AgentSigninState extends State<AgentSignin> {
   final TextEditingController phoneController = TextEditingController();
 
   Country selectedCountry = Country(
@@ -29,6 +28,8 @@ class AgentSignInState extends State<AgentSignIn> {
     e164Key: "",
   );
 
+  UserType selectedUserRole = UserType.agent;
+
   @override
   Widget build(BuildContext context) {
     phoneController.selection = TextSelection.fromPosition(
@@ -38,10 +39,9 @@ class AgentSignInState extends State<AgentSignIn> {
     );
     return Stack(
       children: [
-        // const BackgroundImage(),
         Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: Center(
               child: Padding(
@@ -52,21 +52,33 @@ class AgentSignInState extends State<AgentSignIn> {
                     const LogoText(),
                     const SizedBox(height: 70),
                     const Text(
-                      "Welcome Back Agent",
+                      "Agent Sign In",
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "Supervise Beba operations efficiently.",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     TextFormField(
-                      cursorColor: Colors.white,
+                      cursorColor: Colors.black,
                       controller: phoneController,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       onChanged: (value) {
                         setState(() {
@@ -74,11 +86,11 @@ class AgentSignInState extends State<AgentSignIn> {
                         });
                       },
                       decoration: InputDecoration(
-                        hintText: "0712345678",
+                        hintText: "Enter No Eg. 0712345678",
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 16,
-                          color: Colors.white70,
+                          color: Colors.grey,
                         ),
                         filled: true,
                         fillColor: Colors.blue[45],
@@ -110,7 +122,7 @@ class AgentSignInState extends State<AgentSignIn> {
                               "${selectedCountry.flagEmoji} + ${selectedCountry.phoneCode}",
                               style: const TextStyle(
                                 fontSize: 18,
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -136,13 +148,39 @@ class AgentSignInState extends State<AgentSignIn> {
                     ),
                     const SizedBox(height: 20),
                     SizedBox(
-                      width: double.infinity,
+                      width: 150,
                       height: 50,
                       child: CustomButton(
                         text: "Enter",
                         onPressed: () => sendPhoneNumber(context),
                       ),
                     ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    const Divider(
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(height: 30.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/signin'),
+                            child: const Text('Login as Traveller')),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        ElevatedButton(
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/signin/driver'),
+                            child: const Text('Login as Driver')),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

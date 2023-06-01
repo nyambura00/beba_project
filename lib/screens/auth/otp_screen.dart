@@ -2,14 +2,16 @@ import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/utils/utils.dart';
-import 'package:beba_app/widgets/background_image.dart';
 import 'package:beba_app/widgets/custom_button.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
 class OtpScreen extends StatefulWidget {
   final String verificationId;
-  const OtpScreen({super.key, required this.verificationId});
+  final String? signinRoute;
+
+  const OtpScreen(
+      {super.key, required this.verificationId, required this.signinRoute});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -24,15 +26,14 @@ class _OtpScreenState extends State<OtpScreen> {
         Provider.of<AuthProvider>(context, listen: true).isLoading;
     return Stack(
       children: [
-        const BackgroundImage(),
         Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: isLoading == true
                 ? const Center(
                     child: CircularProgressIndicator(
-                      color: Colors.blue,
+                      color: Colors.red,
                     ),
                   )
                 : Center(
@@ -58,7 +59,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -66,7 +67,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             "Enter the OTP send to your phone number",
                             style: TextStyle(
                               fontSize: 14,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -81,13 +82,13 @@ class _OtpScreenState extends State<OtpScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
-                                  color: Colors.grey.shade100,
+                                  color: Colors.black,
                                 ),
                               ),
                               textStyle: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                             onCompleted: (value) {
@@ -105,8 +106,6 @@ class _OtpScreenState extends State<OtpScreen> {
                               onPressed: () {
                                 if (otpCode != null) {
                                   verifyOtp(context, otpCode!);
-                                  // redirect to /userhome screen
-                                  Navigator.pushNamed(context, '/userhome');
                                 } else {
                                   showSnackBar(context, "Enter the OTP code");
                                 }
@@ -156,8 +155,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         (value) => ap.setSignIn().then(
                           (value) {
                             // Redirect based on user roles
-                            final userRole = ap
-                                .getUserRole(context);
+                            final userRole = ap.getUserRole(context);
                             if (userRole == UserType.driver) {
                               Navigator.pushNamedAndRemoveUntil(
                                   context, '/driverhome', (route) => false);
@@ -176,9 +174,21 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                 );
           } else {
-            // New user can still see trips available in Beba
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/userhome', (route) => false);
+            // user does not exist -> assign to respective splash screens
+            // based on sign-in screen
+            switch (widget.signinRoute) {
+              case '/signin/agent':
+                Navigator.pushReplacementNamed(context, '/agentsplash');
+                break;
+              case '/signin/driver':
+                Navigator.pushReplacementNamed(context, '/driversplash');
+                break;
+              case '/signin':
+                Navigator.pushReplacementNamed(context, '/userhome');
+                break;
+              default:
+                Navigator.pushReplacementNamed(context, '/userhome');
+            }
           }
         });
       },

@@ -11,7 +11,7 @@ class LogoText extends StatelessWidget {
         fontFamily: 'JotiOne',
         fontWeight: FontWeight.bold,
         fontSize: 40.0,
-        color: Colors.white,
+        color: Colors.black,
       ),
     );
   }

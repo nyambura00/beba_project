@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SuperAdminScreen extends StatefulWidget {
-  const SuperAdminScreen({super.key});
+class SuperAdminDashboard extends StatefulWidget {
+  const SuperAdminDashboard({super.key});
 
   @override
-  State<SuperAdminScreen> createState() => _SuperAdminScreenState();
+  State<SuperAdminDashboard> createState() => _SuperAdminDashboardState();
 }
 
-class _SuperAdminScreenState extends State<SuperAdminScreen> {
+class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

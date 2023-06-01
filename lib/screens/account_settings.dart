@@ -80,6 +80,19 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                 // Navigate to change password screen
               },
             ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Center(
+              child: SizedBox(
+                width: 100.0,
+                height: 30.0,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/logout'),
+                  child: const Text('Sign Out'),
+                ),
+              ),
+            ),
           ],
         ),
       ),

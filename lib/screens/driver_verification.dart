@@ -278,8 +278,6 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
 
                 showSnackBar(context,
                     'Form submitted Successfully. Please await verification');
-
-                Navigator.pushNamed(context, '/driverhome');
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
@@ -309,6 +307,6 @@ class _DriverVerificationFormState extends State<DriverVerificationForm> {
     // to check if the driver's details are valid
 
     // If the verification succeeds, navigate to the driver dashboard
-    Navigator.pushNamed(context, '/driverdashboard');
+    Navigator.pushNamed(context, '/driverhome');
   }
 }

@@ -85,7 +85,7 @@ class _AgentDashboardState extends State<AgentDashboard> {
             ),
             const SizedBox(height: 15.0),
             const Text(
-              'Pending Trips...',
+              'Available Trips...',
               style: TextStyle(
                   fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red),
             ),

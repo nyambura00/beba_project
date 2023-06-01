@@ -2,6 +2,8 @@ import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/screens/agent_home.dart';
 import 'package:beba_app/screens/auth/signin.dart';
+// import 'package:beba_app/screens/auth/signin.dart';
+// import 'package:beba_app/screens/auth/signin_superadmin.dart';
 import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/super_admin.dart';
@@ -29,7 +31,7 @@ class AuthGate extends StatelessWidget {
                 final userType = snapshot.data;
                 switch (userType) {
                   case UserType.superAdmin:
-                    return const SuperAdminScreen();
+                    return const SuperAdminDashboard();
                   case UserType.agent:
                     return const AgentDashboard();
                   case UserType.driver:

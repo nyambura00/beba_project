@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -54,86 +52,12 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void signInWithPhone(BuildContext context, String phoneNumber) async {
-    String userRouteName = ModalRoute.of(context)?.settings.name ?? '';
     try {
       await _firebaseAuth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
           verificationCompleted:
               (PhoneAuthCredential phoneAuthCredential) async {
             await _firebaseAuth.signInWithCredential(phoneAuthCredential);
-
-            //Get user's ID
-            final uid = _firebaseAuth.currentUser?.uid;
-            try {
-              if (uid == null) {
-                // if id is null, assign user role respectively
-                String role = '';
-                String? routeName = userRouteName;
-
-                switch (routeName) {
-                  case '/signin/superadmin':
-                    role = 'SUPER_ADMIN';
-                    break;
-                  case '/signin/agent':
-                    role = 'AGENT';
-                    break;
-                  case '/signin/driver':
-                    role = 'DRIVER';
-                    break;
-                  case '/signin':
-                    role = 'DEFAULT_USER';
-                    break;
-                  default:
-                    role = 'DEFAULT_USER';
-                }
-
-                assignUserRole(
-                  _firebaseAuth.currentUser!.uid,
-                  role,
-                );
-
-                // UserType userType = getUserRoleFromRoleString(role);
-
-                setSignIn();
-                // Set user sign-in status
-              } else {
-                // Fetch user claims from the user's ID token
-                final idTokenResult =
-                    await _firebaseAuth.currentUser?.getIdTokenResult();
-
-                // Access the custom claims from the user's ID token
-                final customClaims = idTokenResult?.claims;
-
-                // Check if the custom claims contain a 'role' claim
-                if (customClaims != null && customClaims.containsKey('role')) {
-                  // Retrieve the user role from the custom claims
-                  final userRole = customClaims['role'];
-
-                  switch (userRole) {
-                    case 'SUPER_ADMIN':
-                      Navigator.pushNamed(context, '/superadmin');
-                      break;
-                    case 'AGENT':
-                      Navigator.pushNamed(context, '/agentdashboard');
-                      break;
-                    case 'DRIVER':
-                      Navigator.pushNamed(context, '/driverhome');
-                      break;
-                    case 'DEFAULT_USER':
-                      Navigator.pushNamed(context, '/userhome');
-                      break;
-                    default:
-                      Navigator.pushNamed(context, '/userhome');
-                  }
-
-                  setSignIn();
-                }
-              }
-            } catch (e) {
-              print(e);
-              showSnackBar(
-                  context, 'Error accessing the authenticated user ID');
-            }
           },
           verificationFailed: (error) {
             throw Exception(error.message);
@@ -144,6 +68,7 @@ class AuthProvider extends ChangeNotifier {
               MaterialPageRoute(
                 builder: (context) => OtpScreen(
                   verificationId: verificationId,
+                  signinRoute: ModalRoute.of(context)!.settings.name,
                 ),
               ),
             );
@@ -185,8 +110,8 @@ class AuthProvider extends ChangeNotifier {
   UserType getUserRole(BuildContext context) {
     if (_firebaseAuth.currentUser != null) {
       // Access the user's role from your user data
-      String userRole =
-          _userModel?.role ?? ''; // Update with the actual user role field
+      String userRole = _userModel?.role ??
+          'DEFAULT_USER'; // Update with the actual user role field
 
       if (userRole.isNotEmpty) {
         // Map the user role string to the corresponding UserType enum value

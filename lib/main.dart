@@ -11,6 +11,8 @@ import 'package:beba_app/screens/auth/authgate.dart';
 import 'package:beba_app/screens/auth/logout.dart';
 import 'package:beba_app/screens/auth/signin.dart';
 import 'package:beba_app/screens/auth/signin_agent.dart';
+import 'package:beba_app/screens/auth/signin_driver.dart';
+import 'package:beba_app/screens/auth/signin_superadmin.dart';
 import 'package:beba_app/screens/contact_us.dart';
 import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/driver_splash.dart';
@@ -114,8 +116,10 @@ class MyApp extends StatelessWidget {
           '/agentsplash': (context) => const AgentSplash(),
           '/agentregistration': (context) => const AgentRegistration(),
           '/agentdashboard': (context) => const AgentDashboard(),
-          '/signin/agent': (context) => const AgentSignIn(),
-          '/superadmin': (context) => const SuperAdminScreen(),
+          '/signin/driver': (context) => const DriverSignin(),
+          '/signin/agent': (context) => const AgentSignin(),
+          '/signin/super_admin': (context) => const SuperAdminSignin(),
+          '/superadmindashboard': (context) => const SuperAdminDashboard(),
         },
       ),
     );
