@@ -1,5 +1,6 @@
 import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/provider/trips_provider.dart';
+import 'package:beba_app/screens/trips/unit_trip.dart';
 import 'package:beba_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/model/trip_model.dart';
@@ -94,8 +95,12 @@ class _TripCardState extends State<TripCard> {
                   ),
                   onPressed: widget.trip.isApproved
                       ? () {
-                          Navigator.pushNamed(context, '/tripunit',
-                              arguments: widget.trip.id);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UnitTrip(tripCard: widget),
+                            ),
+                          );
                         }
                       : () {
                           try {
