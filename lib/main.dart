@@ -27,6 +27,7 @@ import 'package:beba_app/screens/trips/book_trip.dart';
 import 'package:beba_app/screens/trips/unit_trip.dart';
 import 'package:beba_app/screens/user_profile.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
+import 'package:beba_app/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -112,7 +113,10 @@ class MyApp extends StatelessWidget {
           '/driverhome': (context) => const DriverHomeScreen(),
           '/bidtrip': (context) => const BidTripScreen(),
           '/tripconfirmation': (context) => const TripConfirmation(),
-          '/tripunit': (context) => const UnitTrip(),
+          '/tripunit': (context) => UnitTrip(
+                tripCard:
+                    ModalRoute.of(context)?.settings.arguments as TripCard,
+              ),
           '/agentsplash': (context) => const AgentSplash(),
           '/agentregistration': (context) => const AgentRegistration(),
           '/agentdashboard': (context) => const AgentDashboard(),
