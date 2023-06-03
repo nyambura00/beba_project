@@ -191,6 +191,9 @@ class SigninScreenState extends State<SigninScreen> {
   void sendPhoneNumber(BuildContext context) {
     final ap = Provider.of<AuthProvider>(context, listen: false);
     String phoneNumber = phoneController.text.trim();
-    ap.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");
+
+    final signinRoute = ModalRoute.of(context)!.settings.name;
+    ap.signInWithPhone(
+        context, "+${selectedCountry.phoneCode}$phoneNumber", signinRoute);
   }
 }

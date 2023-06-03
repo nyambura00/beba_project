@@ -2,8 +2,6 @@ import 'package:beba_app/model/user_model.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/screens/agent_home.dart';
 import 'package:beba_app/screens/auth/signin.dart';
-// import 'package:beba_app/screens/auth/signin.dart';
-// import 'package:beba_app/screens/auth/signin_superadmin.dart';
 import 'package:beba_app/screens/driver_home.dart';
 import 'package:beba_app/screens/home_screen.dart';
 import 'package:beba_app/screens/super_admin.dart';
@@ -62,7 +60,7 @@ class AuthGate extends StatelessWidget {
         if (userRole.isNotEmpty) {
           return getUserRoleFromRoleString(userRole);
         } else {
-          print('User role not available');
+          print('User role attribute is empty');
         }
       } else {
         print('User model not available');

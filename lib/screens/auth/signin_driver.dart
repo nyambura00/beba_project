@@ -1,7 +1,5 @@
-import 'package:beba_app/utils/utils.dart';
 import 'package:beba_app/widgets/beba_logo.dart';
 import 'package:country_picker/country_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:beba_app/provider/auth_provider.dart';
 import 'package:beba_app/widgets/custom_button.dart';
@@ -196,6 +194,9 @@ class DriverSigninState extends State<DriverSignin> {
   void sendPhoneNumber(BuildContext context) async {
     final ap = Provider.of<AuthProvider>(context, listen: false);
     String phoneNumber = phoneController.text.trim();
-    ap.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");
+
+    final signinRoute = ModalRoute.of(context)!.settings.name;
+    ap.signInWithPhone(
+        context, "+${selectedCountry.phoneCode}$phoneNumber", signinRoute);
   }
 }

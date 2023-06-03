@@ -11,7 +11,8 @@ class OtpScreen extends StatefulWidget {
   final String? signinRoute;
 
   const OtpScreen(
-      {super.key, required this.verificationId, required this.signinRoute});
+      {Key? key, required this.verificationId, required this.signinRoute})
+      : super(key: key);
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -102,10 +103,11 @@ class _OtpScreenState extends State<OtpScreen> {
                             width: MediaQuery.of(context).size.width,
                             height: 50,
                             child: CustomButton(
-                              text: "Verify",
+                              text: "Verify OTP",
                               onPressed: () {
                                 if (otpCode != null) {
-                                  verifyOtp(context, otpCode!);
+                                  verifyOtp(
+                                      context, otpCode!, widget.signinRoute);
                                 } else {
                                   showSnackBar(context, "Enter the OTP code");
                                 }
@@ -140,7 +142,7 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   //verify OTP
-  void verifyOtp(BuildContext context, String userOtp) {
+  void verifyOtp(BuildContext context, String userOtp, String? signinRoute) {
     final ap = Provider.of<AuthProvider>(context, listen: false);
     ap.verifyOtp(
       context: context,
@@ -156,6 +158,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           (value) {
                             // Redirect based on user roles
                             final userRole = ap.getUserRole(context);
+
                             if (userRole == UserType.driver) {
                               Navigator.pushNamedAndRemoveUntil(
                                   context, '/driverhome', (route) => false);
@@ -164,7 +167,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   context, '/agentdashboard', (route) => false);
                             } else if (userRole == UserType.superAdmin) {
                               Navigator.pushNamedAndRemoveUntil(
-                                  context, '/adminhome', (route) => false);
+                                  context, '/superadminhome', (route) => false);
                             } else if (userRole == UserType.defaultUser) {
                               Navigator.pushNamedAndRemoveUntil(
                                   context, '/userhome', (route) => false);
@@ -175,8 +178,9 @@ class _OtpScreenState extends State<OtpScreen> {
                 );
           } else {
             // user does not exist -> assign to respective splash screens
-            // based on sign-in screen
-            switch (widget.signinRoute) {
+            // based on sign-in screen used
+
+            switch (signinRoute) {
               case '/signin/agent':
                 Navigator.pushReplacementNamed(context, '/agentsplash');
                 break;

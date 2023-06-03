@@ -51,7 +51,8 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void signInWithPhone(BuildContext context, String phoneNumber) async {
+  void signInWithPhone(
+      BuildContext context, String phoneNumber, String? signinRoute) async {
     try {
       await _firebaseAuth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
@@ -68,7 +69,7 @@ class AuthProvider extends ChangeNotifier {
               MaterialPageRoute(
                 builder: (context) => OtpScreen(
                   verificationId: verificationId,
-                  signinRoute: ModalRoute.of(context)!.settings.name,
+                  signinRoute: signinRoute,
                 ),
               ),
             );

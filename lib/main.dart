@@ -123,7 +123,7 @@ class MyApp extends StatelessWidget {
           '/signin/driver': (context) => const DriverSignin(),
           '/signin/agent': (context) => const AgentSignin(),
           '/signin/super_admin': (context) => const SuperAdminSignin(),
-          '/superadmindashboard': (context) => const SuperAdminDashboard(),
+          '/superadminhome': (context) => const SuperAdminDashboard(),
         },
       ),
     );
