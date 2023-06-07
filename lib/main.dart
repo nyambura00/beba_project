@@ -81,9 +81,7 @@ class MyApp extends StatelessWidget {
           future: initializeTrips(context),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SizedBox(
-                width: 30,
-                height: 30,
+              return const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),

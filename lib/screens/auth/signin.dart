@@ -194,6 +194,6 @@ class SigninScreenState extends State<SigninScreen> {
 
     final signinRoute = ModalRoute.of(context)!.settings.name;
     ap.signInWithPhone(
-        context, "+${selectedCountry.phoneCode}$phoneNumber", signinRoute);
+        context, "+${selectedCountry.phoneCode}$phoneNumber", signinRoute!);
   }
 }

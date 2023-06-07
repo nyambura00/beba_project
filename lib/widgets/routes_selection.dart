@@ -60,8 +60,11 @@ class _RoutesSelectionState extends State<RoutesSelection> {
   Future<void> _loadInitialRoute() async {
     final driverRoute = await _driverRegisteredRoute();
     setState(() {
-      _selectedOption =
-          isDriver ? driverRoute : widget.options?.first ?? 'NRB-ELD';
+      _selectedOption = isDriver
+          ? driverRoute
+          : (widget.options?.isNotEmpty ?? false)
+              ? widget.options?.first ?? 'NRB-ELD'
+              : 'NRB-ELD';
     });
   }
 

@@ -197,6 +197,6 @@ class DriverSigninState extends State<DriverSignin> {
 
     final signinRoute = ModalRoute.of(context)!.settings.name;
     ap.signInWithPhone(
-        context, "+${selectedCountry.phoneCode}$phoneNumber", signinRoute);
+        context, "+${selectedCountry.phoneCode}$phoneNumber", signinRoute!);
   }
 }

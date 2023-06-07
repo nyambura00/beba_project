@@ -52,7 +52,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void signInWithPhone(
-      BuildContext context, String phoneNumber, String? signinRoute) async {
+      BuildContext context, String phoneNumber, String signinRoute) async {
     try {
       await _firebaseAuth.verifyPhoneNumber(
           phoneNumber: phoneNumber,

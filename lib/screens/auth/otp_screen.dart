@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class OtpScreen extends StatefulWidget {
   final String verificationId;
-  final String? signinRoute;
+  final String signinRoute;
 
   const OtpScreen(
       {Key? key, required this.verificationId, required this.signinRoute})
@@ -179,8 +179,7 @@ class _OtpScreenState extends State<OtpScreen> {
           } else {
             // user does not exist -> assign to respective splash screens
             // based on sign-in screen used
-
-            switch (signinRoute) {
+            switch (widget.signinRoute) {
               case '/signin/agent':
                 Navigator.pushReplacementNamed(context, '/agentsplash');
                 break;
