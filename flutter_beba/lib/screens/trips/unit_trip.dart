@@ -2,9 +2,11 @@ import 'package:beba_app/widgets/app_bar.dart';
 import 'package:beba_app/widgets/bottom_navbar.dart';
 import 'package:beba_app/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:beba_app/services/api_service.dart';
 
 class UnitTrip extends StatelessWidget {
   final TripCard tripCard;
+  final apiService = ApiService();
 
   const UnitTrip({Key? key, required this.tripCard}) : super(key: key);
 
@@ -77,10 +79,14 @@ class UnitTrip extends StatelessWidget {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            // Perform STK push here
-                            // Replace the following code with your implementation
-                            Navigator.pop(context); // Close the dialog
+                            //Perform STK push here
+                            await apiService.initiateStkPush();
+
+                            // Close the dialog
+                            Navigator.pop(context); 
+                            
                             // Show a success message or navigate to a success screen
+                            showSnackBar(context, 'Trip has been booked successfuly');
                           },
                           child: const Text('Confirm'),
                         ),
