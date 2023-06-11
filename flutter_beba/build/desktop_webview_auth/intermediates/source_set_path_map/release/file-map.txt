@@ -1,0 +1,12 @@
+com.example.desktop_webview_auth-jetified-window-1.0.0-beta04-0 /home/stranger101/.gradle/caches/transforms-3/6a7b5d30bf9617ecb811024b2ec27e38/transformed/jetified-window-1.0.0-beta04/res
+com.example.desktop_webview_auth-core-1.6.0-1 /home/stranger101/.gradle/caches/transforms-3/71e8b91f5f941b6981505050ecfacc7a/transformed/core-1.6.0/res
+com.example.desktop_webview_auth-jetified-annotation-experimental-1.1.0-2 /home/stranger101/.gradle/caches/transforms-3/7dabe459565a9a2ba33e7063c05aa604/transformed/jetified-annotation-experimental-1.1.0/res
+com.example.desktop_webview_auth-jetified-window-java-1.0.0-beta04-3 /home/stranger101/.gradle/caches/transforms-3/8e87497f8cc7bb81a7f1fee61f24832d/transformed/jetified-window-java-1.0.0-beta04/res
+com.example.desktop_webview_auth-main-4 /home/stranger101/.pub-cache/hosted/pub.dev/desktop_webview_auth-0.0.11/android/src/main/res
+com.example.desktop_webview_auth-release-5 /home/stranger101/.pub-cache/hosted/pub.dev/desktop_webview_auth-0.0.11/android/src/release/res
+com.example.desktop_webview_auth-pngs-6 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/desktop_webview_auth/generated/res/pngs/release
+com.example.desktop_webview_auth-resValues-7 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/desktop_webview_auth/generated/res/resValues/release
+com.example.desktop_webview_auth-rs-8 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/desktop_webview_auth/generated/res/rs/release
+com.example.desktop_webview_auth-mergeReleaseResources-9 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/desktop_webview_auth/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.example.desktop_webview_auth-mergeReleaseResources-10 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/desktop_webview_auth/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.example.desktop_webview_auth-merged_res-11 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/desktop_webview_auth/intermediates/merged_res/release

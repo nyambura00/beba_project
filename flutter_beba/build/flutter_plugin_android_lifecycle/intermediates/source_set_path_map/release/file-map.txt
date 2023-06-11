@@ -1,0 +1,12 @@
+io.flutter.plugins.flutter_plugin_android_lifecycle-jetified-window-1.0.0-beta04-0 /home/stranger101/.gradle/caches/transforms-3/6a7b5d30bf9617ecb811024b2ec27e38/transformed/jetified-window-1.0.0-beta04/res
+io.flutter.plugins.flutter_plugin_android_lifecycle-core-1.6.0-1 /home/stranger101/.gradle/caches/transforms-3/71e8b91f5f941b6981505050ecfacc7a/transformed/core-1.6.0/res
+io.flutter.plugins.flutter_plugin_android_lifecycle-jetified-annotation-experimental-1.1.0-2 /home/stranger101/.gradle/caches/transforms-3/7dabe459565a9a2ba33e7063c05aa604/transformed/jetified-annotation-experimental-1.1.0/res
+io.flutter.plugins.flutter_plugin_android_lifecycle-jetified-window-java-1.0.0-beta04-3 /home/stranger101/.gradle/caches/transforms-3/8e87497f8cc7bb81a7f1fee61f24832d/transformed/jetified-window-java-1.0.0-beta04/res
+io.flutter.plugins.flutter_plugin_android_lifecycle-main-4 /home/stranger101/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.13/android/src/main/res
+io.flutter.plugins.flutter_plugin_android_lifecycle-release-5 /home/stranger101/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.13/android/src/release/res
+io.flutter.plugins.flutter_plugin_android_lifecycle-pngs-6 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/flutter_plugin_android_lifecycle/generated/res/pngs/release
+io.flutter.plugins.flutter_plugin_android_lifecycle-resValues-7 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/flutter_plugin_android_lifecycle/generated/res/resValues/release
+io.flutter.plugins.flutter_plugin_android_lifecycle-rs-8 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/flutter_plugin_android_lifecycle/generated/res/rs/release
+io.flutter.plugins.flutter_plugin_android_lifecycle-mergeReleaseResources-9 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/flutter_plugin_android_lifecycle/intermediates/incremental/release/mergeReleaseResources/merged.dir
+io.flutter.plugins.flutter_plugin_android_lifecycle-mergeReleaseResources-10 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/flutter_plugin_android_lifecycle/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+io.flutter.plugins.flutter_plugin_android_lifecycle-merged_res-11 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/flutter_plugin_android_lifecycle/intermediates/merged_res/release

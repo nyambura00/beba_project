@@ -1,0 +1,4 @@
+#Sun Jun 11 15:58:31 EAT 2023
+base.0=/home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

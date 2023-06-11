@@ -1,0 +1,12 @@
+io.flutter.plugins.sharedpreferences.shared_preferences_android-jetified-window-1.0.0-beta04-0 /home/stranger101/.gradle/caches/transforms-3/6a7b5d30bf9617ecb811024b2ec27e38/transformed/jetified-window-1.0.0-beta04/res
+io.flutter.plugins.sharedpreferences.shared_preferences_android-core-1.6.0-1 /home/stranger101/.gradle/caches/transforms-3/71e8b91f5f941b6981505050ecfacc7a/transformed/core-1.6.0/res
+io.flutter.plugins.sharedpreferences.shared_preferences_android-jetified-annotation-experimental-1.1.0-2 /home/stranger101/.gradle/caches/transforms-3/7dabe459565a9a2ba33e7063c05aa604/transformed/jetified-annotation-experimental-1.1.0/res
+io.flutter.plugins.sharedpreferences.shared_preferences_android-jetified-window-java-1.0.0-beta04-3 /home/stranger101/.gradle/caches/transforms-3/8e87497f8cc7bb81a7f1fee61f24832d/transformed/jetified-window-java-1.0.0-beta04/res
+io.flutter.plugins.sharedpreferences.shared_preferences_android-main-4 /home/stranger101/.pub-cache/hosted/pub.dev/shared_preferences_android-2.1.4/android/src/main/res
+io.flutter.plugins.sharedpreferences.shared_preferences_android-release-5 /home/stranger101/.pub-cache/hosted/pub.dev/shared_preferences_android-2.1.4/android/src/release/res
+io.flutter.plugins.sharedpreferences.shared_preferences_android-pngs-6 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/shared_preferences_android/generated/res/pngs/release
+io.flutter.plugins.sharedpreferences.shared_preferences_android-resValues-7 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/shared_preferences_android/generated/res/resValues/release
+io.flutter.plugins.sharedpreferences.shared_preferences_android-rs-8 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/shared_preferences_android/generated/res/rs/release
+io.flutter.plugins.sharedpreferences.shared_preferences_android-mergeReleaseResources-9 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/shared_preferences_android/intermediates/incremental/release/mergeReleaseResources/merged.dir
+io.flutter.plugins.sharedpreferences.shared_preferences_android-mergeReleaseResources-10 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/shared_preferences_android/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+io.flutter.plugins.sharedpreferences.shared_preferences_android-merged_res-11 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/shared_preferences_android/intermediates/merged_res/release

@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.desktop_webview_auth-merged_res-10:/values-zh-rHK/values-zh-rHK.xml",
+            "map": [
+                {
+                    "source": "/home/stranger101/.gradle/caches/transforms-3/71e8b91f5f941b6981505050ecfacc7a/transformed/core-1.6.0/res/values-zh-rHK/values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.example.desktop_webview_auth-mergeReleaseResources-8:/values-zh-rHK/values-zh-rHK.xml",
+            "map": [
+                {
+                    "source": "/home/stranger101/.gradle/caches/transforms-3/71e8b91f5f941b6981505050ecfacc7a/transformed/core-1.6.0/res/values-zh-rHK/values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+io.flutter.plugins.firebase.auth.firebase_auth-jetified-play-services-base-18.0.1-0 /home/stranger101/.gradle/caches/transforms-3/1b97856bd3c35ef265bfbb95587a7844/transformed/jetified-play-services-base-18.0.1/res
+io.flutter.plugins.firebase.auth.firebase_auth-jetified-firebase-common-20.3.2-1 /home/stranger101/.gradle/caches/transforms-3/425d7bba2475f02569de782d0e8e9458/transformed/jetified-firebase-common-20.3.2/res
+io.flutter.plugins.firebase.auth.firebase_auth-jetified-play-services-basement-18.1.0-2 /home/stranger101/.gradle/caches/transforms-3/59deb00ae09a989a6ce282e44772791c/transformed/jetified-play-services-basement-18.1.0/res
+io.flutter.plugins.firebase.auth.firebase_auth-jetified-window-1.0.0-beta04-3 /home/stranger101/.gradle/caches/transforms-3/6a7b5d30bf9617ecb811024b2ec27e38/transformed/jetified-window-1.0.0-beta04/res
+io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-4 /home/stranger101/.gradle/caches/transforms-3/71e8b91f5f941b6981505050ecfacc7a/transformed/core-1.6.0/res
+io.flutter.plugins.firebase.auth.firebase_auth-jetified-annotation-experimental-1.1.0-5 /home/stranger101/.gradle/caches/transforms-3/7dabe459565a9a2ba33e7063c05aa604/transformed/jetified-annotation-experimental-1.1.0/res
+io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-6 /home/stranger101/.gradle/caches/transforms-3/84648d1fe33eb4f96f88af1c111b23ca/transformed/browser-1.4.0/res
+io.flutter.plugins.firebase.auth.firebase_auth-jetified-window-java-1.0.0-beta04-7 /home/stranger101/.gradle/caches/transforms-3/8e87497f8cc7bb81a7f1fee61f24832d/transformed/jetified-window-java-1.0.0-beta04/res
+io.flutter.plugins.firebase.auth.firebase_auth-main-8 /home/stranger101/.pub-cache/hosted/pub.dev/firebase_auth-4.4.2/android/src/main/res
+io.flutter.plugins.firebase.auth.firebase_auth-release-9 /home/stranger101/.pub-cache/hosted/pub.dev/firebase_auth-4.4.2/android/src/release/res
+io.flutter.plugins.firebase.auth.firebase_auth-pngs-10 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_auth/generated/res/pngs/release
+io.flutter.plugins.firebase.auth.firebase_auth-resValues-11 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_auth/generated/res/resValues/release
+io.flutter.plugins.firebase.auth.firebase_auth-rs-12 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_auth/generated/res/rs/release
+io.flutter.plugins.firebase.auth.firebase_auth-mergeReleaseResources-13 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_auth/intermediates/incremental/release/mergeReleaseResources/merged.dir
+io.flutter.plugins.firebase.auth.firebase_auth-mergeReleaseResources-14 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_auth/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+io.flutter.plugins.firebase.auth.firebase_auth-merged_res-15 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_auth/intermediates/merged_res/release
+io.flutter.plugins.firebase.auth.firebase_auth-packaged_res-16 /home/stranger101/Desktop/dev-zone/Projects/beba_project/flutter_beba/build/firebase_core/intermediates/packaged_res/release
