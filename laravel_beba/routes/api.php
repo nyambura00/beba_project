@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('api')->group(function () {
+    Route::get('mpesa/token', [PayController::class, 'token']);
+    Route::get('mpesa/initiateStk', [PayController::class, 'initiateStkPush']);
+    Route::post('mpesa/stkCallback', [PayController::class, 'stkCallback']);
+    Route::get('mpesa/stkquery', [PayController::class, 'stkQuery']);
+});
+
+Route::get('pay', [PayController::class, 'stk']);

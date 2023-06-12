@@ -3,15 +3,21 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   final String baseUrl =
-      'http://127.0.0.1:8000'; // Replace with your Laravel API base URL
+      'https://2cb4-41-90-68-233.ngrok-free.app'; // configure URL from ngrok http 8000
 
   Future<String> getToken() async {
     final response = await http.get(Uri.parse('$baseUrl/token'));
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      return jsonData['access_token'];
-    } else {
-      throw Exception('Failed to get access token');
+    try {
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        return jsonData['access_token'];
+      } else {
+        print(response.body);
+        throw Exception('Failed to get access token');
+      }
+    } catch (e) {
+      print(e);
+      throw Exception(e);
     }
   }
 
